@@ -37,53 +37,281 @@
 
         <!-- <p>Include some detailed information about the dataset here. You should <a href="#">add a link</a> to the original dataset. You might also want to quote the license:</p> -->
 
-             <p> This project is supposed to visualize certain relationships between airline data from the San Francisco International Airport           </p>
-              <p>Data acquired from <a href="https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg">DataSF</a> on February 9, 2020.</p>
+        <h2 id="data">Data</h2>
 
-              <ol>
-                        <li><strong>Activity Period:</strong> The year and month at which passenger activity took place. It's a numeric type with a range from 200507-201909.</li>
+                <p>The data set was taken from Data SF and shows the <a href="https://data.sfgov.org/Public-Safety/Fire-Department-Calls-for-Service/nuek-vuh3"> Fire Department Calls for Service </a> for the San Francisco Fire Department.
+                <p>It collects data by monthly period from December 2015 to December 2019 (as of this date in February 2020)</p>
 
-                        <li><strong>Operating Airline:</strong> Airline name for the operator of aircraft with passenger activity. It is a text type, with a range of Airline names.</li>
+                <blockquote>
+                  <p>All data are under Public Domain Dedication and License (PDDL).</p>
+                  <p>From Open Data Commons webpage on PDDL:</p>
+                  <p>You are free to:</p>
+                  <p>1.To Share: To copy, distribute and use the database.</p>
+                  <p>2.To Create: To produce works from the database.</p>
+                  <p>3.To Adapt: To modify, transform and build upon the database.
+                  <cite> <a href="https://support.datasf.org/help/what-license-are-open-data-sets-under">--Data SF license information</a></cite>
+                </blockquote>
 
-                        <li><strong>Operating Airline IATA Code:</strong>The International Air Transport Association (IATA) two-letter designation for the Operating Airline. It is a text type.</li>
+                <p>The data itself is divided into 3 columns and many rows. </p>
+                <div style="height:400px;overflow:auto;">
+                <div id="dataviztable_30069">
+                  <table class="table is-bordered pricing__table is-fullwidth">
+                   <col width=209 style='mso-width-source:userset;mso-width-alt:6698;width:157pt'>
+                   <col width=149 style='mso-width-source:userset;mso-width-alt:4778;width:112pt'>
+                   <col width=208 span=2 style='mso-width-source:userset;mso-width-alt:6656;
+                   width:156pt'>
+                   <tr height=21 style='height:16.0pt'>
+                    <td height=21 class=xl63 width=209 style='height:16.0pt;width:157pt'>Field
+                    Name</td>
+                    <td class=xl63 width=149 style='border-left:none;width:112pt'>Data Type</td>
+                    <td class=xl63 width=208 style='border-left:none;width:156pt'>Definition</td>
+                   </tr>
+                   <tr height=113 style='height:85.0pt'>
+                    <td height=113 class=xl64 style='height:85.0pt;border-top:none'>Call Number</td>
+                    <td class=xl65 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>A
+                    unique 9-digit number assigned by the 911 Dispatch Center (DEM) to this call.
+                    These number are used for both Police and Fire calls.</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Unit ID</td>
+                    <td class=xl65 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>Unit
+                    Identifier. For example E01 for Engine 1 or T01 for Truck 1.</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Incident
+                    Number</td>
+                    <td class=xl65 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>A
+                    unique 8-digit number assigned by DEM to this Fire incident.</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Call Date</td>
+                    <td class=xl65 style='border-top:none;border-left:none'>Date &amp; Time</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>Date
+                    the call is received at the 911 Dispatch Center. Used for reporting purposes.</td>
+                   </tr>
+                   <tr height=45 style='height:34.0pt'>
+                    <td height=45 class=xl64 style='height:34.0pt;border-top:none'>Call Type</td>
+                    <td class=xl65 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>Type
+                    of call the incident falls into. See the list below.</td>
+                   </tr>
+                   <tr height=91 style='height:68.0pt'>
+                    <td height=91 class=xl64 style='height:68.0pt;border-top:none'>Watch Date</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Date &amp; Time</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>Watch
+                    date when the call is received. Watch date starts at 0800 each morning and
+                    ends at 0800 the next day.</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Received DtTm</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Date &amp; Time</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>Date
+                    and time of call is received at the 911 Dispatch Center.</td>
+                   </tr>
+                   <tr height=91 style='height:68.0pt'>
+                    <td height=91 class=xl64 style='height:68.0pt;border-top:none'>Entry DtTm</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Date &amp; Time</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>Date
+                    and time the 911 operator submits the entry of the initical call information
+                    into the CAD system</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Dispatch DtTm</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Date &amp; Time</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>Date
+                    and time the 911 operator dispatches this unit to the call.</td>
+                   </tr>
+                   <tr height=113 style='height:85.0pt'>
+                    <td height=113 class=xl64 style='height:85.0pt;border-top:none'>Response DtTm</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Date &amp; Time</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>Date
+                    and time this unit acknowledges the dispatch and records that the unit is en
+                    route to the location of the call.</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>On Scene DtTm</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Date &amp; Time</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>Date
+                    and time the unit records arriving to the location of the incident</td>
+                   </tr>
+                   <tr height=91 style='height:68.0pt'>
+                    <td height=91 class=xl64 style='height:68.0pt;border-top:none'>AVL Validated
+                    On Scene DtTm</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Date &amp; Time</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>Updated
+                    date and time the unit arrived on scene based on existing unit AVL
+                    coordinates.</td>
+                   </tr>
+                   <tr height=91 style='height:68.0pt'>
+                    <td height=91 class=xl64 style='height:68.0pt;border-top:none'>Transport DtTm</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Date &amp; Time</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>If
+                    this unit is an ambulance, date and time the unit begins the transport unit
+                    arrives to hospital</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Hospital DtTm</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Date &amp; Time</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>If
+                    this unit is an ambulance, date and time the unit arrives to the hospital.</td>
+                   </tr>
+                   <tr height=91 style='height:68.0pt'>
+                    <td height=91 class=xl64 style='height:68.0pt;border-top:none'>Call Final
+                    Disposition</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>Disposition
+                    of the call (Code). For example TH2: Transport to Hospital - Code 2, FIR:
+                    Resolved by Fire Department</td>
+                   </tr>
+                   <tr height=91 style='height:68.0pt'>
+                    <td height=91 class=xl64 style='height:68.0pt;border-top:none'>Available DtTm</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Date &amp; Time</td>
+                    <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>Date
+                    and time this unit is not longer assigned to this call and it is available
+                    for another dispatch.</td>
+                   </tr>
+                   <tr height=91 style='height:68.0pt'>
+                    <td height=91 class=xl64 style='height:68.0pt;border-top:none'>Address</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Address
+                    of midblock point associated with incident (obfuscated address to protect
+                    caller privacy)</td>
+                   </tr>
+                   <tr height=23 style='height:17.0pt'>
+                    <td height=23 class=xl64 style='height:17.0pt;border-top:none'>City</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>City
+                    of incident</td>
+                   </tr>
+                   <tr height=23 style='height:17.0pt'>
+                    <td height=23 class=xl64 style='height:17.0pt;border-top:none'>Zipcode of
+                    Incident</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Zipcode
+                    of incident</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Battalion</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Emergency
+                    Response District (There are 9 Fire Emergency Response Districts)</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Station Area</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Fire
+                    Station First Response Area associated with the address of the incident</td>
+                   </tr>
+                   <tr height=181 style='height:136.0pt'>
+                    <td height=181 class=xl64 style='height:136.0pt;border-top:none'>Box</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Fire
+                    box associated with the address of the incident. A box is the smallest area
+                    used to divide the City. Each box is associated with a unique unit dispatch
+                    order. The City is divided into more than 2,400 boxes.</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Original
+                    Priority</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Initial
+                    call priority (Code 2: Non-Emergency or Code 3:Emergency).</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Priority</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Call
+                    priority (Code 2: Non-Emergency or Code 3:Emergency).</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Final Priority</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Final
+                    call priority (Code 2: Non-Emergency or Code 3:Emergency).</td>
+                   </tr>
+                   <tr height=91 style='height:68.0pt'>
+                    <td height=91 class=xl64 style='height:68.0pt;border-top:none'>ALS Unit</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Boolean (True/False)</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Does
+                    this unit includes ALS (Advance Life Support) resources? Is there a paramedic
+                    in this unit?</td>
+                   </tr>
+                   <tr height=113 style='height:85.0pt'>
+                    <td height=113 class=xl64 style='height:85.0pt;border-top:none'>Call Type
+                    Group</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Call
+                    types are divided into four main groups: Fire, Alarm, Potential Life
+                    Threatening and Non Life Threatening.</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Number of
+                    Alarms</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Numeric</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Number
+                    of alarms associated with the incident. This is a number between 1 and 5.</td>
+                   </tr>
+                   <tr height=23 style='height:17.0pt'>
+                    <td height=23 class=xl64 style='height:17.0pt;border-top:none'>Unit Type</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Unit
+                    type</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Unit sequence
+                    in call dispatch</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Numeric</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>A
+                    number that indicates the order this unit was assigned to this call</td>
+                   </tr>
+                   <tr height=91 style='height:68.0pt'>
+                    <td height=91 class=xl64 style='height:68.0pt;border-top:none'>Location</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Coordinates</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Latitude
+                    and longitude of address obfuscated either to the midblock, intersection or
+                    call box</td>
+                   </tr>
+                   <tr height=68 style='height:51.0pt'>
+                    <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Fire
+                    Prevention District</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Bureau
+                    of Fire Prevention District associated with this address</td>
+                   </tr>
+                   <tr height=45 style='height:34.0pt'>
+                    <td height=45 class=xl64 style='height:34.0pt;border-top:none'>Supervisor
+                    District</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Supervisor
+                    District associated with this address</td>
+                   </tr>
+                   <tr height=113 style='height:85.0pt'>
+                    <td height=113 class=xl64 style='height:85.0pt;border-top:none'>Neighborhood
+                    District</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Neighborhood
+                    District associated with this address, boundaries available here:
+                    https://data.sfgov.org/d/p5b7-5n3h</td>
+                   </tr>
+                   <tr height=113 style='height:85.0pt'>
+                    <td height=113 class=xl64 style='height:85.0pt;border-top:none'>RowID</td>
+                    <td class=xl64 style='border-top:none;border-left:none'>Text</td>
+                    <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Unique
+                    identifier used for managing data updates. It is the concatenation of Call
+                    Number and Unit ID separated by a dash</td>
+                   </tr>
+                   <tr height=0 style='display:none'>
+                    <td width=209 style='width:157pt'></td>
+                    <td width=149 style='width:112pt'></td>
+                    <td width=208 style='width:156pt'></td>
+                   </tr>
+                  </table>
+                </div>
+                </div>
 
-                        <li><strong>Published Airline:</strong> Airline name that issues the ticket and books revenue for passenger activity. It is a text type</li>
-
-                        <li><strong>Published Airline IATA Code:</strong> The International Air Transport association (IATA) two-letter designation for the Published Airline. It is a text type</li>
-
-                        <li><strong>GEO Summary:</strong> Provides a more detailed breakdown of the GEO Summary field to designate the region in the world where activity in relation to SFO arrived from or departed to
-              without stops. It is a text type.</li>
-
-                        <li><strong>GEO Region:</strong>Provides a more detailed breakdown of the GEO Summary field to designate the region in the world where activity in relation to SFO arrived from or departed to
-              without stops. It is a text type.</li>
-
-                        <li><strong>Activity Type Code:</strong> A description of the physical actiona passenger took in relation to a flight, which includes boarding a flight (“enplanements”), getting off a flight (“deplanements”) and transiting to another location (“intransit”).  It is a text type.</li>
-
-                        <li><strong>Price Category Code:</strong> A categorization of whether a Published Airline is a low-cost carrier or not a low-cost carrier. It is a text type. </li>
-
-                        <li><strong>Terminal:</strong> The airport terminal designations at SFO where passenger activity took place.It is a text type.</li>
-
-                        <li><strong>Boarding Area:</strong> The airport boarding area designations at SFO where passenger activity took place. It is a text type</li>
-
-                        <li><strong>Passenger Count:</strong> The number of monthly passengers associated with the above attribute fields.It is a numeric field.</li>
-                      </ol>
-
-        <p> For these specific visualizations, I ended up using</p>
-        <ol>
-        <li>Passenger Count </li>
-        <li>Activity Period (Converted to Year)</li>
-        <li>GEO Country (Registered Country) </li>
-        <li>Boarding Area</li>
-      </ol>
-
-
-        <h3 id="wrangling">Wrangling</h3>
-        <p> I originally downloaded the whole dataset since I wanted to work with more categories. </p>
-        <p> The data had to be sorted and fitlered out and I ended up doing it based on the time periods, I filtereted out uncommon and unecessary data manually through tableu functions prior to importing into javscript. </p>
-        <p> However, I did use the javascript sort function in order to reorder the data based on ascending and/or alphabetical order </p>
-        <p> It was important to see the relevance and the importance of the data. </p>
-
-<script src="https://gist.github.com/adityanz/06953fd36d72cf709e82cb6258fb20e3.js"></script>
       </div>
       <!-- End page content -->
     </div>
