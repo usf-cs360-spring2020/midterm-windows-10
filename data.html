@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Data</title>
+
+    <!-- Load Bulma from CDN (consider saving it to repository instead) -->
+    <!-- https://bulma.io/ -->
+    <link rel="stylesheet" href="https://jenil.github.io/bulmaswatch/journal/bulmaswatch.min.css">
+
+    <!-- Load Font Awesome 5 (free) icons -->
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  </head>
+
+  <body>
+
+  <div id="navigation">
+  </div>
+  <script>
+  $(function(){
+    $("#navigation").load("navbar.html");
+  });
+  </script>
+
+  <section class="section">
+    <div class="container">
+      <!-- Begin page content -->
+      <div class="content">
+
+        <h2 id="data">Data Source</h2>
+
+        <!-- <p>Include some detailed information about the dataset here. You should <a href="#">add a link</a> to the original dataset. You might also want to quote the license:</p> -->
+
+             <p> This project is supposed to visualize certain relationships between airline data from the San Francisco International Airport           </p>
+              <p>Data acquired from <a href="https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg">DataSF</a> on February 9, 2020.</p>
+
+              <ol>
+                        <li><strong>Activity Period:</strong> The year and month at which passenger activity took place. It's a numeric type with a range from 200507-201909.</li>
+
+                        <li><strong>Operating Airline:</strong> Airline name for the operator of aircraft with passenger activity. It is a text type, with a range of Airline names.</li>
+
+                        <li><strong>Operating Airline IATA Code:</strong>The International Air Transport Association (IATA) two-letter designation for the Operating Airline. It is a text type.</li>
+
+                        <li><strong>Published Airline:</strong> Airline name that issues the ticket and books revenue for passenger activity. It is a text type</li>
+
+                        <li><strong>Published Airline IATA Code:</strong> The International Air Transport association (IATA) two-letter designation for the Published Airline. It is a text type</li>
+
+                        <li><strong>GEO Summary:</strong> Provides a more detailed breakdown of the GEO Summary field to designate the region in the world where activity in relation to SFO arrived from or departed to
+              without stops. It is a text type.</li>
+
+                        <li><strong>GEO Region:</strong>Provides a more detailed breakdown of the GEO Summary field to designate the region in the world where activity in relation to SFO arrived from or departed to
+              without stops. It is a text type.</li>
+
+                        <li><strong>Activity Type Code:</strong> A description of the physical actiona passenger took in relation to a flight, which includes boarding a flight (“enplanements”), getting off a flight (“deplanements”) and transiting to another location (“intransit”).  It is a text type.</li>
+
+                        <li><strong>Price Category Code:</strong> A categorization of whether a Published Airline is a low-cost carrier or not a low-cost carrier. It is a text type. </li>
+
+                        <li><strong>Terminal:</strong> The airport terminal designations at SFO where passenger activity took place.It is a text type.</li>
+
+                        <li><strong>Boarding Area:</strong> The airport boarding area designations at SFO where passenger activity took place. It is a text type</li>
+
+                        <li><strong>Passenger Count:</strong> The number of monthly passengers associated with the above attribute fields.It is a numeric field.</li>
+                      </ol>
+
+        <p> For these specific visualizations, I ended up using</p>
+        <ol>
+        <li>Passenger Count </li>
+        <li>Activity Period (Converted to Year)</li>
+        <li>GEO Country (Registered Country) </li>
+        <li>Boarding Area</li>
+      </ol>
+
+
+        <h3 id="wrangling">Wrangling</h3>
+        <p> I originally downloaded the whole dataset since I wanted to work with more categories. </p>
+        <p> The data had to be sorted and fitlered out and I ended up doing it based on the time periods, I filtereted out uncommon and unecessary data manually through tableu functions prior to importing into javscript. </p>
+        <p> However, I did use the javascript sort function in order to reorder the data based on ascending and/or alphabetical order </p>
+        <p> It was important to see the relevance and the importance of the data. </p>
+
+<script src="https://gist.github.com/adityanz/06953fd36d72cf709e82cb6258fb20e3.js"></script>
+      </div>
+      <!-- End page content -->
+    </div>
+  </section>
+
+  <div id="footer">
+  </div>
+  <script>
+  $(function(){
+    $("#footer").load("footer.html");
+  });
+  </script>
+
+  <!-- End mobile menu responsiveness -->
+  </body>
+
+</html>

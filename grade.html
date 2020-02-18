@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Grade</title>
+
+    <!-- Load Bulma from CDN (consider saving it to repository instead) -->
+    <!-- https://bulma.io/ -->
+    <link rel="stylesheet" href="https://jenil.github.io/bulmaswatch/darkly/bulmaswatch.min.css">
+
+    <!-- Load Font Awesome 5 (free) icons -->
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  </head>
+
+  <body>
+
+  <div id="navigation">
+  </div>
+  <script>
+  $(function(){
+    $("#navigation").load("navbar.html");
+  });
+  </script>
+
+  <section class="section">
+    <div class="container">
+      <!-- Begin page content -->
+      <div class="content">
+
+
+
+                <!-- TODO: Change or remove table -->
+                <!-- https://bulma.io/documentation/elements/table/ -->
+                <table class="table is-hoverable is-bordered grades">
+                  <thead>
+                    <tr>
+                      <th>Letter</th>
+                      <th>Done?</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>C</td>
+                      <td><i class="has-text-success fas fa-check-circle"></i></td>
+                      <td>This was achieved by creating 3 unique visualizations in Tableu.</td>
+                    </tr>
+
+                    <tr>
+                      <td>B</td>
+                      <td><i class="has-text-success fas fa-check-circle"></i></td>
+                      <td>This was achieved by creating 1 Bar visualization in D3 based on the tableu visualization.</td>
+                    </tr>
+
+                    <tr>
+                      <td>A</td>
+                      <td><i class="has-text-success fas fa-check-circle"></i></td>
+                      <td>This was achieved by creating a second line visualization in D3 based on the tableu visualization.</td>
+                    </tr>
+                  </tbody>
+
+                </table>
+
+
+
+      </div>
+      <!-- End page content -->
+    </div>
+  </section>
+
+  <div id="footer">
+  </div>
+  <script>
+  $(function(){
+    $("#footer").load("footer.html");
+  });
+  </script>
+
+  <!-- End mobile menu responsiveness -->
+  </body>
+
+</html>
