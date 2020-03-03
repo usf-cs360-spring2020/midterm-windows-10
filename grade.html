@@ -16,17 +16,18 @@
 
 
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <script>
+    $(function(){
+      $("#footer").load("footer.html");
+      $("#navigation").load("navbar.html");
+    });
+    </script>
   </head>
 
   <body>
 
-  <div id="navigation">
-  </div>
-  <script>
-  $(function(){
-    $("#navigation").load("navbar.html");
-  });
-  </script>
+  <div id="navigation"></div>
 
   <section class="section">
     <div class="container">
@@ -93,6 +94,28 @@
           </li>
         </ul>
 
+        <h4 id="beta-release">Beta Release</h4>
+        <ul>
+          <li>
+            <p><strong>Prototypes:</strong> Include a prototype page per person with the following:</p>
+            <ul class="task-list">
+              <li class="task-list-item">
+                <p><input type="checkbox" class="task-list-item-checkbox" checked="checked" />A <strong>multi-component visualization prototype</strong> created using Tableau Desktop, <a href="https://vega.github.io/vega-lite/">Vega-Lite</a>, or another visualization prototyping tool. (Other tools must be pre-approved on Piazza.) The prototypes can be static or interactive.</p>
+              </li>
+              <li class="task-list-item">
+                <p><input type="checkbox" class="task-list-item-checkbox" checked="checked" />Any <strong>processing or wrangling</strong> you had to do to the data for the prototype.</p>
+              </li>
+              <li class="task-list-item">
+                <p><input type="checkbox" class="task-list-item-checkbox" checked="checked" />The <strong>planned interactivity</strong> you will implement in the final version.</p>
+              </li>
+              <li class="task-list-item">
+                <p><input type="checkbox" class="task-list-item-checkbox" checked="checked" />How your prototypes <strong>supports the theme</strong> of the group project.</p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+
                 <!-- TODO: Change or remove table -->
                 <!-- https://bulma.io/documentation/elements/table/ -->
                 <!-- <table class="table is-hoverable is-bordered grades">
@@ -133,13 +156,7 @@
     </div>
   </section>
 
-  <div id="footer">
-  </div>
-  <script>
-  $(function(){
-    $("#footer").load("footer.html");
-  });
-  </script>
+  <div id="footer"></div>
 
   <!-- End mobile menu responsiveness -->
   </body>
