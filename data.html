@@ -16,17 +16,17 @@
 
 
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script>
+    $(function(){
+      $("#footer").load("footer.html");
+      $("#navigation").load("navbar.html");
+    });
+    </script>
   </head>
 
   <body>
 
-  <div id="navigation">
-  </div>
-  <script>
-  $(function(){
-    $("#navigation").load("navbar.html");
-  });
-  </script>
+  <div id="navigation"></div>
 
   <section class="section">
     <div class="container">
@@ -66,7 +66,7 @@
                     <td class=xl63 width=149 style='border-left:none;width:112pt'>Data Type</td>
                     <td class=xl63 width=208 style='border-left:none;width:156pt'>Definition</td>
                    </tr>
-                   <tr height=113 style='height:85.0pt'>
+                   <tr height=113 style='height:85.0pt' class="is-selected">
                     <td height=113 class=xl64 style='height:85.0pt;border-top:none'>Call Number</td>
                     <td class=xl65 style='border-top:none;border-left:none'>Text</td>
                     <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>A
@@ -86,13 +86,13 @@
                     <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>A
                     unique 8-digit number assigned by DEM to this Fire incident.</td>
                    </tr>
-                   <tr height=68 style='height:51.0pt'>
+                   <tr height=68 style='height:51.0pt' class="is-selected">
                     <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Call Date</td>
                     <td class=xl65 style='border-top:none;border-left:none'>Date &amp; Time</td>
                     <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>Date
                     the call is received at the 911 Dispatch Center. Used for reporting purposes.</td>
                    </tr>
-                   <tr height=45 style='height:34.0pt'>
+                   <tr height=45 style='height:34.0pt' class="is-selected">
                     <td height=45 class=xl64 style='height:34.0pt;border-top:none'>Call Type</td>
                     <td class=xl65 style='border-top:none;border-left:none'>Text</td>
                     <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>Type
@@ -105,7 +105,7 @@
                     date when the call is received. Watch date starts at 0800 each morning and
                     ends at 0800 the next day.</td>
                    </tr>
-                   <tr height=68 style='height:51.0pt'>
+                   <tr height=68 style='height:51.0pt' class="is-selected">
                     <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Received DtTm</td>
                     <td class=xl64 style='border-top:none;border-left:none'>Date &amp; Time</td>
                     <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>Date
@@ -131,7 +131,7 @@
                     and time this unit acknowledges the dispatch and records that the unit is en
                     route to the location of the call.</td>
                    </tr>
-                   <tr height=68 style='height:51.0pt'>
+                   <tr height=68 style='height:51.0pt' class="is-selected">
                     <td height=68 class=xl64 style='height:51.0pt;border-top:none'>On Scene DtTm</td>
                     <td class=xl64 style='border-top:none;border-left:none'>Date &amp; Time</td>
                     <td class=xl66 width=208 style='border-top:none;border-left:none;width:156pt'>Date
@@ -186,7 +186,7 @@
                     <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>City
                     of incident</td>
                    </tr>
-                   <tr height=23 style='height:17.0pt'>
+                   <tr height=23 style='height:17.0pt' class="is-selected">
                     <td height=23 class=xl64 style='height:17.0pt;border-top:none'>Zipcode of
                     Incident</td>
                     <td class=xl64 style='border-top:none;border-left:none'>Text</td>
@@ -220,13 +220,13 @@
                     <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Initial
                     call priority (Code 2: Non-Emergency or Code 3:Emergency).</td>
                    </tr>
-                   <tr height=68 style='height:51.0pt'>
+                   <tr height=68 style='height:51.0pt' class="is-selected">
                     <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Priority</td>
                     <td class=xl64 style='border-top:none;border-left:none'>Text</td>
                     <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Call
                     priority (Code 2: Non-Emergency or Code 3:Emergency).</td>
                    </tr>
-                   <tr height=68 style='height:51.0pt'>
+                   <tr height=68 style='height:51.0pt' class="is-selected">
                     <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Final Priority</td>
                     <td class=xl64 style='border-top:none;border-left:none'>Text</td>
                     <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Final
@@ -239,7 +239,7 @@
                     this unit includes ALS (Advance Life Support) resources? Is there a paramedic
                     in this unit?</td>
                    </tr>
-                   <tr height=113 style='height:85.0pt'>
+                   <tr height=113 style='height:85.0pt' class="is-selected">
                     <td height=113 class=xl64 style='height:85.0pt;border-top:none'>Call Type
                     Group</td>
                     <td class=xl64 style='border-top:none;border-left:none'>Text</td>
@@ -247,14 +247,14 @@
                     types are divided into four main groups: Fire, Alarm, Potential Life
                     Threatening and Non Life Threatening.</td>
                    </tr>
-                   <tr height=68 style='height:51.0pt'>
+                   <tr height=68 style='height:51.0pt' class="is-selected">
                     <td height=68 class=xl64 style='height:51.0pt;border-top:none'>Number of
                     Alarms</td>
                     <td class=xl64 style='border-top:none;border-left:none'>Numeric</td>
                     <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Number
                     of alarms associated with the incident. This is a number between 1 and 5.</td>
                    </tr>
-                   <tr height=23 style='height:17.0pt'>
+                   <tr height=23 style='height:17.0pt' class="is-selected">
                     <td height=23 class=xl64 style='height:17.0pt;border-top:none'>Unit Type</td>
                     <td class=xl64 style='border-top:none;border-left:none'>Text</td>
                     <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Unit
@@ -267,7 +267,7 @@
                     <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>A
                     number that indicates the order this unit was assigned to this call</td>
                    </tr>
-                   <tr height=91 style='height:68.0pt'>
+                   <tr height=91 style='height:68.0pt' class="is-selected">
                     <td height=91 class=xl64 style='height:68.0pt;border-top:none'>Location</td>
                     <td class=xl64 style='border-top:none;border-left:none'>Coordinates</td>
                     <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Latitude
@@ -288,7 +288,7 @@
                     <td class=xl67 width=208 style='border-top:none;border-left:none;width:156pt'>Supervisor
                     District associated with this address</td>
                    </tr>
-                   <tr height=113 style='height:85.0pt'>
+                   <tr height=113 style='height:85.0pt' class="is-selected">
                     <td height=113 class=xl64 style='height:85.0pt;border-top:none'>Neighborhood
                     District</td>
                     <td class=xl64 style='border-top:none;border-left:none'>Text</td>
@@ -314,7 +314,7 @@
 
                 <h2 id="data">Processing/Filtering</h2>
 
-                <p>For the collected data, we first processed it by _______ (as of this date in February 2020)</p>
+                <p>For the collected data, null values were filtered out of the visualizations (as of this date in February 2020).</p>
 
 
       </div>
@@ -322,13 +322,7 @@
     </div>
   </section>
 
-  <div id="footer">
-  </div>
-  <script>
-  $(function(){
-    $("#footer").load("footer.html");
-  });
-  </script>
+  <div id="footer"></div>
 
   <!-- End mobile menu responsiveness -->
   </body>
