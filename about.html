@@ -16,17 +16,17 @@
 
 
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script>
+    $(function(){
+      $("#navigation").load("navbar.html");
+      $("#footer").load("footer.html");
+    });
+    </script>
   </head>
 
   <body>
 
-  <div id="navigation">
-  </div>
-  <script>
-  $(function(){
-    $("#navigation").load("navbar.html");
-  });
-  </script>
+  <div id="navigation"></div>
 
   <section class="section">
     <div class="container">
@@ -176,13 +176,7 @@
     </div>
   </section>
 
-  <div id="footer">
-  </div>
-  <script>
-  $(function(){
-    $("#footer").load("footer.html");
-  });
-  </script>
+  <div id="footer"></div>
 
   <!-- End mobile menu responsiveness -->
   </body>
