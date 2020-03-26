@@ -1,0 +1,288 @@
+﻿Neighborhooods - Analysis Boundaries,Unit Type (group),Number of Alarms
+Lincoln Park,OTHER,143
+McLaren Park,OTHER,84
+Seacliff,OTHER,94
+Presidio,OTHER,919
+Glen Park,OTHER,52
+Twin Peaks,OTHER,56
+Golden Gate Park,OTHER,217
+Treasure Island,OTHER,820
+Presidio Heights,OTHER,56
+Japantown,OTHER,34
+Portola,OTHER,91
+Noe Valley,OTHER,87
+Visitacion Valley,OTHER,167
+Lone Mountain/USF,OTHER,114
+Oceanview/Merced/Ingleside,OTHER,142
+Inner Richmond,OTHER,114
+Mission Bay,OTHER,384
+Outer Mission,OTHER,149
+Lakeshore,OTHER,482
+Inner Sunset,OTHER,137
+Haight Ashbury,OTHER,161
+Russian Hill,OTHER,430
+Bernal Heights,OTHER,241
+Potrero Hill,OTHER,318
+Marina,OTHER,473
+Excelsior,OTHER,185
+Chinatown,OTHER,187
+Pacific Heights,OTHER,105
+West of Twin Peaks,OTHER,215
+North Beach,OTHER,963
+Hayes Valley,OTHER,292
+Castro/Upper Market,OTHER,262
+Outer Richmond,OTHER,804
+Nob Hill,OTHER,713
+Western Addition,OTHER,637
+Sunset/Parkside,OTHER,420
+Bayview Hunters Point,OTHER,1250
+Financial District/South Beach,OTHER,2934
+Mission,OTHER,1184
+South of Market,OTHER,5761
+Tenderloin,OTHER,9517
+Lincoln Park,RESCUE ,175
+McLaren Park,RESCUE ,148
+Seacliff,RESCUE ,291
+Presidio,RESCUE ,883
+Glen Park,RESCUE ,659
+Twin Peaks,RESCUE ,671
+Golden Gate Park,RESCUE ,1097
+Treasure Island,RESCUE ,978
+Presidio Heights,RESCUE ,1018
+Japantown,RESCUE ,748
+Portola,RESCUE ,1327
+Noe Valley,RESCUE ,1791
+Visitacion Valley,RESCUE ,1831
+Lone Mountain/USF,RESCUE ,1565
+Oceanview/Merced/Ingleside,RESCUE ,1850
+Inner Richmond,RESCUE ,3486
+Mission Bay,RESCUE ,1360
+Outer Mission,RESCUE ,2043
+Lakeshore,RESCUE ,1788
+Inner Sunset,RESCUE ,1855
+Haight Ashbury,RESCUE ,1505
+Russian Hill,RESCUE ,1970
+Bernal Heights,RESCUE ,2885
+Potrero Hill,RESCUE ,2681
+Marina,RESCUE ,2298
+Excelsior,RESCUE ,3321
+Chinatown,RESCUE ,2378
+Pacific Heights,RESCUE ,2074
+West of Twin Peaks,RESCUE ,2634
+North Beach,RESCUE ,2691
+Hayes Valley,RESCUE ,2642
+Castro/Upper Market,RESCUE ,2816
+Outer Richmond,RESCUE ,4836
+Nob Hill,RESCUE ,3822
+Western Addition,RESCUE ,3430
+Sunset/Parkside,RESCUE ,4797
+Bayview Hunters Point,RESCUE ,7035
+Financial District/South Beach,RESCUE ,10119
+Mission,RESCUE ,16050
+South of Market,RESCUE ,19754
+Tenderloin,RESCUE ,18786
+Lincoln Park,CHIEF,359
+McLaren Park,CHIEF,499
+Seacliff,CHIEF,642
+Presidio,CHIEF,1832
+Glen Park,CHIEF,1359
+Twin Peaks,CHIEF,1633
+Golden Gate Park,CHIEF,861
+Treasure Island,CHIEF,1186
+Presidio Heights,CHIEF,2871
+Japantown,CHIEF,1707
+Portola,CHIEF,1545
+Noe Valley,CHIEF,3442
+Visitacion Valley,CHIEF,2210
+Lone Mountain/USF,CHIEF,3025
+Oceanview/Merced/Ingleside,CHIEF,2927
+Inner Richmond,CHIEF,3522
+Mission Bay,CHIEF,3845
+Outer Mission,CHIEF,2487
+Lakeshore,CHIEF,4981
+Inner Sunset,CHIEF,4394
+Haight Ashbury,CHIEF,3613
+Russian Hill,CHIEF,4582
+Bernal Heights,CHIEF,3808
+Potrero Hill,CHIEF,4695
+Marina,CHIEF,6136
+Excelsior,CHIEF,3099
+Chinatown,CHIEF,5533
+Pacific Heights,CHIEF,7165
+West of Twin Peaks,CHIEF,5318
+North Beach,CHIEF,5489
+Hayes Valley,CHIEF,5827
+Castro/Upper Market,CHIEF,5532
+Outer Richmond,CHIEF,5800
+Nob Hill,CHIEF,8724
+Western Addition,CHIEF,8584
+Sunset/Parkside,CHIEF,6415
+Bayview Hunters Point,CHIEF,11177
+Financial District/South Beach,CHIEF,19441
+Mission,CHIEF,16645
+South of Market,CHIEF,16239
+Tenderloin,CHIEF,22736
+Lincoln Park,PRIVATE,200
+McLaren Park,PRIVATE,153
+Seacliff,PRIVATE,405
+Presidio,PRIVATE,1161
+Glen Park,PRIVATE,1087
+Twin Peaks,PRIVATE,1607
+Golden Gate Park,PRIVATE,2210
+Treasure Island,PRIVATE,1455
+Presidio Heights,PRIVATE,2802
+Japantown,PRIVATE,3737
+Portola,PRIVATE,2145
+Noe Valley,PRIVATE,2292
+Visitacion Valley,PRIVATE,2554
+Lone Mountain/USF,PRIVATE,4060
+Oceanview/Merced/Ingleside,PRIVATE,2868
+Inner Richmond,PRIVATE,4226
+Mission Bay,PRIVATE,3952
+Outer Mission,PRIVATE,3285
+Lakeshore,PRIVATE,3125
+Inner Sunset,PRIVATE,4251
+Haight Ashbury,PRIVATE,5217
+Russian Hill,PRIVATE,4825
+Bernal Heights,PRIVATE,4000
+Potrero Hill,PRIVATE,4205
+Marina,PRIVATE,6071
+Excelsior,PRIVATE,4439
+Chinatown,PRIVATE,6602
+Pacific Heights,PRIVATE,6271
+West of Twin Peaks,PRIVATE,4905
+North Beach,PRIVATE,7604
+Hayes Valley,PRIVATE,8639
+Castro/Upper Market,PRIVATE,7697
+Outer Richmond,PRIVATE,8513
+Nob Hill,PRIVATE,10880
+Western Addition,PRIVATE,13036
+Sunset/Parkside,PRIVATE,10961
+Bayview Hunters Point,PRIVATE,10848
+Financial District/South Beach,PRIVATE,21022
+Mission,PRIVATE,28226
+South of Market,PRIVATE,38430
+Tenderloin,PRIVATE,54298
+Lincoln Park,TRUCK,389
+McLaren Park,TRUCK,528
+Seacliff,TRUCK,743
+Presidio,TRUCK,1820
+Glen Park,TRUCK,1424
+Twin Peaks,TRUCK,1634
+Golden Gate Park,TRUCK,1400
+Treasure Island,TRUCK,1657
+Presidio Heights,TRUCK,3725
+Japantown,TRUCK,2752
+Portola,TRUCK,1911
+Noe Valley,TRUCK,3994
+Visitacion Valley,TRUCK,2491
+Lone Mountain/USF,TRUCK,3485
+Oceanview/Merced/Ingleside,TRUCK,3633
+Inner Richmond,TRUCK,3721
+Mission Bay,TRUCK,5367
+Outer Mission,TRUCK,3857
+Lakeshore,TRUCK,6222
+Inner Sunset,TRUCK,5124
+Haight Ashbury,TRUCK,5022
+Russian Hill,TRUCK,5580
+Bernal Heights,TRUCK,4399
+Potrero Hill,TRUCK,5319
+Marina,TRUCK,8238
+Excelsior,TRUCK,4126
+Chinatown,TRUCK,9066
+Pacific Heights,TRUCK,8486
+West of Twin Peaks,TRUCK,6729
+North Beach,TRUCK,6536
+Hayes Valley,TRUCK,7740
+Castro/Upper Market,TRUCK,8473
+Outer Richmond,TRUCK,7230
+Nob Hill,TRUCK,12540
+Western Addition,TRUCK,13395
+Sunset/Parkside,TRUCK,9094
+Bayview Hunters Point,TRUCK,16044
+Financial District/South Beach,TRUCK,28525
+Mission,TRUCK,24989
+South of Market,TRUCK,26811
+Tenderloin,TRUCK,44996
+Lincoln Park,MEDIC,473
+McLaren Park,MEDIC,823
+Seacliff,MEDIC,914
+Presidio,MEDIC,2661
+Glen Park,MEDIC,4090
+Twin Peaks,MEDIC,5115
+Golden Gate Park,MEDIC,5209
+Treasure Island,MEDIC,8081
+Presidio Heights,MEDIC,6174
+Japantown,MEDIC,7792
+Portola,MEDIC,10401
+Noe Valley,MEDIC,8327
+Visitacion Valley,MEDIC,12970
+Lone Mountain/USF,MEDIC,9634
+Oceanview/Merced/Ingleside,MEDIC,13369
+Inner Richmond,MEDIC,10176
+Mission Bay,MEDIC,11714
+Outer Mission,MEDIC,14906
+Lakeshore,MEDIC,13184
+Inner Sunset,MEDIC,12073
+Haight Ashbury,MEDIC,13631
+Russian Hill,MEDIC,11018
+Bernal Heights,MEDIC,17281
+Potrero Hill,MEDIC,15746
+Marina,MEDIC,13714
+Excelsior,MEDIC,21092
+Chinatown,MEDIC,15541
+Pacific Heights,MEDIC,13440
+West of Twin Peaks,MEDIC,19810
+North Beach,MEDIC,17766
+Hayes Valley,MEDIC,21875
+Castro/Upper Market,MEDIC,23644
+Outer Richmond,MEDIC,20905
+Nob Hill,MEDIC,27086
+Western Addition,MEDIC,30453
+Sunset/Parkside,MEDIC,34812
+Bayview Hunters Point,MEDIC,53013
+Financial District/South Beach,MEDIC,53846
+Mission,MEDIC,93887
+South of Market,MEDIC,104488
+Tenderloin,MEDIC,133054
+Lincoln Park,ENGINE,1090
+McLaren Park,ENGINE,1457
+Seacliff,ENGINE,1829
+Presidio,ENGINE,5252
+Glen Park,ENGINE,6042
+Twin Peaks,ENGINE,7044
+Golden Gate Park,ENGINE,8038
+Treasure Island,ENGINE,7389
+Presidio Heights,ENGINE,9836
+Japantown,ENGINE,10539
+Portola,ENGINE,12033
+Noe Valley,ENGINE,12836
+Visitacion Valley,ENGINE,15431
+Lone Mountain/USF,ENGINE,15810
+Oceanview/Merced/Ingleside,ENGINE,16498
+Inner Richmond,ENGINE,17264
+Mission Bay,ENGINE,16088
+Outer Mission,ENGINE,17456
+Lakeshore,ENGINE,17716
+Inner Sunset,ENGINE,20374
+Haight Ashbury,ENGINE,19714
+Russian Hill,ENGINE,20703
+Bernal Heights,ENGINE,21117
+Potrero Hill,ENGINE,22095
+Marina,ENGINE,22597
+Excelsior,ENGINE,26430
+Chinatown,ENGINE,23904
+Pacific Heights,ENGINE,26014
+West of Twin Peaks,ENGINE,26853
+North Beach,ENGINE,28871
+Hayes Valley,ENGINE,31140
+Castro/Upper Market,ENGINE,30553
+Outer Richmond,ENGINE,33331
+Nob Hill,ENGINE,40845
+Western Addition,ENGINE,42187
+Sunset/Parkside,ENGINE,49933
+Bayview Hunters Point,ENGINE,61974
+Financial District/South Beach,ENGINE,77857
+Mission,ENGINE,105389
+South of Market,ENGINE,111965
+Tenderloin,ENGINE,146714
