@@ -123,7 +123,13 @@ font-weight: bold;
                     to most of the other neighborhoods.
                     </p>
 
-
+                    <p>
+                      From my peer feedback, I received some comments about my choice of color encoding which was hard to distinguish the difference in value and about the x-axis labeling for neighborhoods which also too hard for others to see. I took these comments and prof. Sophie’s advice and I redesigned my Heatmap. I first switched my axis so not my y-axis are names of neighborhoods and the x-axis are the unit type groups. I also did two groupings; 1. Rescue – Rescue captain and Rescue Squad 2. Other – Airport, Investigation, Support. This allows lower alarm units to have a chance to be compared with the larger scale units. I also changed the color scheme to be interpolateRdYlBu to allow a better way to see to distinguish the size difference of the number of alarms.
+The way to interpret the Heatmap is the x-axis is the unit type groups and the y-axis are the names of the neighborhood. The color for the map is based on the number of alarms for each unit type. The darker the blue color for the group means the lower the alarm amount and the lighter the blue it gets until it becomes red means the higher alarm amount it has.
+For interactions, I enable a tooltip so the user sees the number of alarms for the unit type when they hover on a cell so they can make a better comparison and see the exact number of the alarms that unit type for the neighborhood.
+For my findings, I found out that the two highest unit types that had the most alarms were Engine and Medic compared to the other types which allow me to see most calls are likely going to these units first. I also founded out that the highest alarms were going to Tenderloin, south of Market, Mission, and Financial District, which helps see a correlation of either a city/business area or areas where more population brings these higher alarm count to happen.
+For inspiration, I would like to thank Sophie’s Zillow HeatMap and her legend code that helped me be able to create my Heatmap.
+                    </p>
                     <script>
 
                     // location of data file
