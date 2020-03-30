@@ -1,10 +1,67 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<style type="text/css">
+svg {
+  background-color: whitesmoke;
+  border: 1px solid lightgrey;
+}
+
+#background {
+  fill: white;
+}
+
+.cell {
+  stroke-width: 1px;
+}
+
+.axis path,
+.axis line {
+  stroke: none;
+  fill: none;
+}
+
+.axis text {
+  fill: dimgrey;
+  font-size: 8px;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 9px;
+  color: dimgrey;
+}
+
+.square {
+  opacity: 0.5;
+}
+
+.square:hover {
+  opacity: 1.0;
+}
+
+div.tooltip-donut {
+  position: absolute;
+  text-align: center;
+  padding: .1rem;
+  background: #FFFFFF;
+  color: #313639;
+  border: 1px solid #313639;
+  border-radius: 8px;
+  pointer-events: none;
+  font-size: 0.6rem;
+}
+
+text.axis-title, text.legendTitle {
+font-size: 8px;
+font-weight: bold;
+}
+</style>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Midterm Beta Release</title>
+    <title>Heat Map</title>
 
     <!-- Load Bulma from CDN (consider saving it to repository instead) -->
     <!-- https://bulma.io/ -->
@@ -14,127 +71,556 @@
 
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="bar.css">
 
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script>
-    $(function(){
-      $("#navigation").load("navbar.html");
-      $("#footer").load("footer.html");
-    });
-    </script>
-  </head>
+
+</head>
 
   <body>
 
-  <div id="navigation"></div>
+  <div id="navigation">
+  </div>
+  <script>
+  $(function(){
+    $("#navigation").load("navbar.html");
+  });
+  </script>
 
-  <section class="section">
-    <div class="container">
-      <!-- Begin page content -->
-      <div class="content">
-        <h1 class="title" align="center">
-          Heat Map
-        </h1>
-        <p class="subtitle" align="center">
-        Prototype</p>
+      <section class="section">
+        <div class="container">
+          <div class="content has-text-centered">
+                    <h1 class="title" align="center">
+                      Heat Map
+                    </h1>
+                    <p class="subtitle" align="center">
+                    by Alejandro Garcia</p>
 
-        <figure >
-          <img  src="Heat.png"></img>
-        </figure>
+                    <figure >
+                      <img  src="Heat.png"></img>
+                    </figure>
 
-        <h2 align="center">Analysis</h2>
+                    <h2>Number of Alarm calls per unit type</h2>
+                    <svg></svg>
 
-        <p align="center">
-        For this Heatmap, the unit types and the number
-        of Alarms correlated to neighborhoods were visually analyzed.
+                    <h2 align="center">Analysis</h2>
 
-        The color scheme is based on the sum of the number of alarms.
+                    <p align="center">
+                    For this Heatmap, the unit types and the number
+                    of Alarms correlated to neighborhoods were visually analyzed.
 
-        So, we can
+                    The color scheme is based on the sum of the number of alarms.
 
-        Based on the visualization, unit types can be tracked to neighborhoods that
-        it was called in the most frequently.
+                    So, we can
 
-        For instance, an observation can be seen where the Medic unit had a
-        higher number of alarms called in the Mission and South of Market compared
-        to most of the other neighborhoods.
-        </p>
+                    Based on the visualization, unit types can be tracked to neighborhoods that
+                    it was called in the most frequently.
 
-        <!-- <p class="buttons">
-          <a class="button is-large is-success" href="https://usf-cs360-spring2020.github.io/homework1-adityanz/line.html">
-            <span class="icon is-medium">
-              <i class="fas fa-chart-line"></i>
-            </span>
-            <span>Line Chart</span>
-          </a>
+                    For instance, an observation can be seen where the Medic unit had a
+                    higher number of alarms called in the Mission and South of Market compared
+                    to most of the other neighborhoods.
+                    </p>
 
-          <a class="button is-large is-info" href="https://usf-cs360-spring2020.github.io/homework1-adityanz/bar.html">
-            <span class="icon is-medium">
-              <i class="fas fa-chart-bar"></i>
-            </span>
-            <span>Bar Chart</span>
-          </a>
+                    <p>
+                      From my peer feedback, I received some comments about my choice of color encoding which was hard to distinguish the difference in value and about the x-axis labeling for neighborhoods which also too hard for others to see. I took these comments and prof. Sophie’s advice and I redesigned my Heatmap. I first switched my axis so not my y-axis are names of neighborhoods and the x-axis are the unit type groups. I also did two groupings; 1. Rescue – Rescue captain and Rescue Squad 2. Other – Airport, Investigation, Support. This allows lower alarm units to have a chance to be compared with the larger scale units. I also changed the color scheme to be interpolateRdYlBu to allow a better way to see to distinguish the size difference of the number of alarms.
+The way to interpret the Heatmap is the x-axis is the unit type groups and the y-axis are the names of the neighborhood. The color for the map is based on the number of alarms for each unit type. The darker the blue color for the group means the lower the alarm amount and the lighter the blue it gets until it becomes red means the higher alarm amount it has.
+For interactions, I enable a tooltip so the user sees the number of alarms for the unit type when they hover on a cell so they can make a better comparison and see the exact number of the alarms that unit type for the neighborhood.
+For my findings, I found out that the two highest unit types that had the most alarms were Engine and Medic compared to the other types which allow me to see most calls are likely going to these units first. I also founded out that the highest alarms were going to Tenderloin, south of Market, Mission, and Financial District, which helps see a correlation of either a city/business area or areas where more population brings these higher alarm count to happen.
+For inspiration, I would like to thank Sophie’s Zillow HeatMap and her legend code that helped me be able to create my Heatmap.
+                    </p>
+                    <script>
 
-        <a class="button is-large is-primary" href="https://usf-cs360-spring2020.github.io/homework1-adityanz/area.html">
-            <span class="icon is-medium">
-              <i class="fas fa-chart-area"></i>
-            </span>
-            <span>Area Chart</span>
-          </a> -->
+                    // location of data file
+                    let csv = 'heatmap.csv';
 
-          <!-- <a class="button is-large is-link" href="#">
-            <span class="icon is-medium">
-              <i class="fas fa-chart-pie"></i>
-            </span>
-            <span>Pie Chart</span>
-          </a>
-        </p> -->
+                    // configuration of svg/plot area
+                    let config = {
+                      'svg': {},
+                      'margin': {},
+                      'plot': {}
+                    };
 
-        <!-- https://github.com/vega/vega-embed#basic-example -->
-        <!-- <p>It is possible to embed some visualizations directly here too. Here is <a href="https://github.com/vega/vega-embed#basic-example">an example</a> using Vega-Lite:</p>
+                    config.svg.height = 500;
+                    config.svg.width = config.svg.height * 1.618; // golden ratio
 
-        <script src="https://cdn.jsdelivr.net/npm/vega@5.9.0"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.2"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.1"></script>
+                    config.margin.top = 20;
+                    config.margin.right = 100;
+                    config.margin.bottom = 20;
+                    config.margin.left = 100;
 
-        <div id="vis"></div>
+                    config.plot.x = config.margin.left;
+                    config.plot.y = config.margin.top;
+                    config.plot.width = config.svg.width - config.margin.left - config.margin.right;
+                    config.plot.height = config.svg.height - config.margin.top - config.margin.bottom;
 
-        <script type="text/javascript">
-        var spec = "https://raw.githubusercontent.com/vega/vega/master/docs/examples/bar-chart.vg.json";
-        vegaEmbed('#vis', spec).then(function(result) {
-          // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-        }).catch(console.error);
-        </script> -->
+                    // setup svg
+                    let svg = d3.select('body').select('svg');
+                    svg.attr('width', config.svg.width);
+                    svg.attr('height', config.svg.height);
 
-        <!-- <h4>Instructions</h4>
+                    // setup plot area
+                    let plot = svg.append('g');
+                    plot.attr('id', 'plot');
+                    plot.attr('transform', translate(config.plot.x, config.plot.y));
 
-        <p>You will likely need to include instructions on how to interpet and use the visualization. In the case above, if you click the three dots <i class="fas fa-ellipsis-h has-text-grey-light	"></i> above it will open a menu where you can either save the visualization to a SVG or PNG, or alternatively open it up in the online Vega Editor.</p> -->
+                    // use a rect to illustrate plot area
+                    let rect = plot.append('rect');
+                    rect.attr('id', 'background');
 
-        <!-- <h4>Stack Bar</h4> -->
+                    rect.attr('x', 0);
+                    rect.attr('y', 0);
+                    rect.attr('width', config.plot.width);
+                    rect.attr('height', config.plot.height);
 
-        <!-- <span class="heading">Acknowledgements</span> -->
+                    // scales for data
+                    let scale = {};
 
-        <!-- <p2>
-          <a href="https://bl.ocks.org/gordlea/27370d1eea8464b04538e6d8ced39e89">Line Chart: By Gord Lea</a><br/>
-          <a href="https://bl.ocks.org/Golodhros/6f8e6d1792416ee3770ff4ddd5c9594e">Simple Bar Chart: By Marcos Iglesia</a><br/>
-          <a href="https://www.d3-graph-gallery.com/graph/custom_legend.html">Legend and Axis Idea</a><br/>
-          <a href="http://bl.ocks.org/sjengle/47c5c20a18ec29f4e2b82905bdb7fe95/f609fe941f8297daf281b708d845eaeb3933fc16">Template: By Sophie Engle</a><br/>
-          <a href="https://bl.ocks.org/d3noob/4db972df5d7efc7d611255d1cc6f3c4f">Inspiration for Two Lines Chart</a><br/><br/>
-        </p2> -->
+                    scale.x = d3.scaleBand();
+                    scale.x.range([0, config.plot.width]);
 
-        <!-- <p class="is-6">
-          <em>I used all those sources in order to better understand and implement my visualizations in D3 and organize my data.</em>
-        </p> -->
+                    scale.y = d3.scaleBand();
+                    scale.y.range([config.plot.height, 0]);
+
+                    // https://github.com/d3/d3-scale-chromatic
+                    scale.color = d3.scaleSequential(d3.interpolateRdYlBu);
+
+                    let axis = {};  // axes for data
+                    axis.x = d3.axisTop(scale.x);
+                    axis.x.tickPadding(0);
+
+                    axis.y = d3.axisLeft(scale.y);
+                    axis.y.tickPadding(0);
+
+                    // format the tick labels
+                    axis.x.tickFormat(dateFormatter);
+                    axis.y.tickFormat(regionFormatter);
+
+                    // load data
+                    // https://github.com/d3/d3-fetch/blob/master/README.md#csv
+
+                    d3.csv(csv, convertRow).then(drawHeatmap);
+
+                    // function to convert column names into date
+                    // try: parseColumnName('1979-12');
+                    //let parseColumnName = d3.timeParse('%Y-%m');
+
+                    // function to convert each row
+                    // https://github.com/d3/d3-fetch/blob/master/README.md#csv
+                    function convertRow(row, index) {
+                      // this will be our converted output row
+                      let out = {};
+
+                      // this will be the values from each yyyy-mm column
+                      out.values = [];
+                      out.total = 0;
+                      // loop through all of the columns in our original row
+                      // depending on column name, perform some sort of conversion
+                      for (let col in row) {
+                        switch (col) {
+                          // these are the text columns that do not need conversion
+                          case 'Neighborhooods - Analysis Boundaries':
+                            out[col] = row[col];
+                            break;
+
+                          // // these are the columns that need to be converted to integer
+                          case 'Number of Alarms':
+                            break;
+
+                          default:
+
+                          // // these should be our time series values
+                            var date = row[col];
+
+                          //   // // convert the value to float
+                            var value = parseInt(row['Number of Alarms']);
+
+                          //   // // add them to our values
+                            out.values.push({
+                              'date': date,
+                              'value': value
+                            });
+                            break;
+                        }
+                      }
+                      return out;
+                    }
+
+                    function drawHeatmap(data) {
+                        //console.log(data);
+
+                        var output = [];
 
 
-      </div>
-      <!-- End page content -->
-    </div>
-  </section>
+                          data.forEach(function(item) {
+                            //console.log(item);
+
+                            var existing = output.filter(function(v, i) {
+                              return v["Neighborhooods - Analysis Boundaries"] == item["Neighborhooods - Analysis Boundaries"];
+                            });
+                            if (existing.length) {
+                              var existingIndex = output.indexOf(existing[0]);
+                              // console.log(output[existingIndex]);
+                              output[existingIndex].values = output[existingIndex].values.concat(item.values);
+                            } else {
+                              if (typeof item.value == 'string')
+                                item.value = [item.value];
+                              output.push(item);
+                            }
+                        });
+
+                        output.forEach(function(item){
+                          item.values.reverse();
+                          item.total = item.values.map(row => row.value).reduce((a, b) => a + b, 0);
+                        })
+
+                        // console.log(output);
+
+                        // var dataset2 = [];
+                        // for (i = 0; i < data.length; i++) {
+
+                        // if (dataset2.some( d => d.y === data[i]["Neighborhooods - Analysis Boundaries"])){
+
+                        //   for ( const [index, element ] of dataset2.entries()){
+
+                        //       if (element.y === data[i]["Neighborhooods - Analysis Boundaries"]){
+                        //         // dataset2[index].x += data[i]["Number of Alarms"];
+                        //       }
+                        //   }
+
+                        // }
+                        // else{
+                        //   let objtemp = {x: data[i]["Number of Alarms"], y: data[i]["Neighborhooods - Analysis Boundaries"]};
+                        //   dataset2.push(objtemp);
+                        // }
+                        // //let objtemp = {x:noalarm , y:neigh};
+                        // }
+
+                        // console.log(dataset2);
+
+                    //   console.log(data[0]);
+
+                    //   // equivalent ways to access object properties
+                    //   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
+                    //   console.log(data[0]['values'][0]);
+                    //   console.log(data[0].values[0]);
+
+                    //   // lets reduce data size to biggest regions
+                    //   // the number of rows to keep
+                    //   let keep = 30;
+
+                    //   // filter dataset to smaller size
+                    //   data = data.filter(function(row) {
+                    //     return row['Index'] === 'Rent Affordability' &&
+                    //            row['SizeRank'] > 0 &&   // excludes United States
+                    //            row['SizeRank'] <= keep;
+                    //   });
+
+                    //   console.log('kept', data.length, 'rows');
+
+                    //   // sorting is important in heatmaps
+                    //   // options: RegionName, SizeRank, HistoricAverage_1985thru1999
+                    //   let sortColumn = 'HistoricAverage_1985thru1999';
+
+                      output = output.sort(function(a, b) {
+                        return a.total - b.total;
+                      });
+
+                      console.log(output);
+
+                    //   // need domains to setup scales
+                    //   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+
+                      let regions = output.map(row => row['Neighborhooods - Analysis Boundaries']);
+                      console.log(regions);
+
+                      let dates = output[0].values.map(value => value.date);
+                      console.log(dates);
+
+                    //   // now that we have data set the scale domain
+                        scale.x.domain(dates);
+                        scale.y.domain(regions);
+
+                    //   // draw the x and y axis
+                      let gx = svg.append("g");
+                      gx.attr("id", "x-axis");
+                      gx.attr("class", "axis");
+                      gx.attr("transform", translate(config.plot.x, config.plot.y));
+                      gx.call(axis.x);
+
+                      let gy = svg.append("g");
+                      gy.attr("id", "y-axis");
+                      gy.attr("class", "axis");
+                      gy.attr("transform", translate(config.plot.x, config.plot.y));
+                      gy.call(axis.y);
+
+                    //   // get all of the value objects (with date and value) from the rows
+                      let values = data.map(d => d.values);
+                    //   // combine all of the individual object arrays into one
+                      let merged = d3.merge(values);
+
+                    //   // get only the value part of the objects
+                      let mapped = merged.map(d => d.value);
+                      console.log(mapped);
+
+                    //   // calculate the min, max, and median
+                      let min = d3.min(mapped);
+                      let max = d3.max(mapped);
+                      let mid = d3.mean(mapped);
+
+                      scale.color.domain([max, min]);
+
+                      var div = d3.select("body").append("div")
+                         .attr("class", "tooltip-donut")
+                         .style("opacity", 0);
+
+                    //   // create one group per row
+                      let rows = plot.selectAll("g.cell")
+                        .data(data)
+                        .enter()
+                        .append("g");
+
+                      rows.attr("class", "cell");
+                      rows.attr("id", d => "Region-" + d.RegionID);
+
+                    //   // shift the entire group to the appropriate y-location
+                      rows.attr("transform", function(d) {
+                        return translate(0, scale.y(d["Neighborhooods - Analysis Boundaries"]));
+                      });
+
+                    //   // create one rect per cell within row group
+                      let cells = rows.selectAll("rect")
+                        .data(d => d.values)
+                        .enter()
+                        .append("rect");
+
+                      cells.attr("x", d => scale.x(d.date));
+                      cells.attr("y", 0); // handled by group transform
+                      cells.attr("width", scale.x.bandwidth());
+                      cells.attr("height", scale.y.bandwidth());
+                      cells.on("mouseover", function(d) {
+                      			console.log(d)
+                            d3.select(this).transition()
+                                   .duration('50')
+                                   .attr('opacity', .50);
+
+                            div.transition()
+                                   .duration(50)
+                                   .style("opacity", 1);
+
+                          let format = d3.format(",");
+
+                          div.html(d.date + ": "+ format(d.value))
+                              .style("left", (d3.event.pageX - 30) + "px")
+                              .style("top", (d3.event.pageY - 15) + "px");
+
+                    		})
+                      cells.on("mouseout", function(d) {d3.select(this).transition()
+                                   .duration('50')
+                                   .attr('opacity', 1);
+                            div.transition()
+                                   .duration('50')
+                                   .style("opacity", 0);
+                        })
+
+                    //   // here is the color magic!
+                      cells.style("fill", d => scale.color(d.value));
+                      cells.style("stroke", d => scale.color(d.value));
+
+                      drawColorLegend();
+                      drawTitles();
+                    }
 
 
-    <div id="footer"></div>
+                    function drawTitles() {
+                      const xMiddle = config.margin.left + midpoint(scale.x.range());
+                      const yMiddle = config.margin.top + midpoint(scale.y.range());
+
+                      // test middle calculation
+                      // svg.append("circle").attr("cx", xMiddle).attr("cy", yMiddle).attr("r", 5);
+
+                      const xTitle = svg.append('text')
+                        .attr('class', 'axis-title')
+                        .text('Unit Type');
+
+                      xTitle.attr('x', xMiddle);
+                      xTitle.attr('y', config.svg.height);
+                      xTitle.attr('dy', -4);
+                      xTitle.attr('text-anchor', 'middle');
+
+                      // it is easier to rotate text if you place it in a group first
+                      // https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotate
+
+                      const yGroup = svg.append('g');
+
+                      // set the position by translating the group
+                      yGroup.attr('transform', translate(4, yMiddle));
+
+                      const yTitle = yGroup.append('text')
+                        .attr('class', 'axis-title')
+                        .text('Neighborhooods');
+
+                      // keep x, y at 0, 0 for rotation around the origin
+                      yTitle.attr('x', 0);
+                      yTitle.attr('y', 0);
+
+                      yTitle.attr('dy', '1.75ex');
+                      yTitle.attr('text-anchor', 'middle');
+                      yTitle.attr('transform', 'rotate(-90)');
+                    }
 
 
+                    function drawColorLegend() {
+                      const legendWidth = 100;
+                      const legendHeight = 20;
+
+                      // place legend in its own group
+                      const group = svg.append('g').attr('id', 'color-legend');
+
+                      // shift legend to appropriate position
+                      group.attr('transform', translate(config.svg.width - legendWidth , config.margin.top));
+
+                      const title = group.append('text')
+                        .attr('class', 'axis-title')
+                        .text('Number of Alarms');
+
+                      title.attr('dy', 12);
+                      title.attr('dx', 10);
+                      // lets draw the rectangle, but it won't have a fill just yet
+                      const colorbox = group.append('rect')
+                        .attr('x', 0)
+                        .attr('y', 12 + 6)
+                        .attr('width', legendWidth)
+                        .attr('height', legendHeight);
+
+                      // we need to create a linear gradient for our color legend
+                      // this defines a color at a percent offset
+                      // https://developer.mozilla.org/en-US/docs/Web/SVG/Element/linearGradient
+
+                      // this is easier if we create a scale to map our colors to percents
+
+                      // get the domain first (we do not want the middle value from the diverging scale)
+                      const colorDomain = [d3.max(scale.color.domain()), d3.min(scale.color.domain())];
+
+                      // add a new scale to go from color tick to percent
+                      scale.percent = d3.scaleLinear()
+                        .range([0, 100])
+                        .domain(colorDomain);
+
+                      // we have to first add gradients
+                      const defs = svg.append('defs');
+
+                      // add a color stop per data tick
+                      // input  (ticks)   : [-20, ..., 15, ..., 50]
+                      // output (percents): [  0, ..., 50, ..., 100]
+                      defs.append('linearGradient')
+                        .attr('id', 'gradient')
+                        .selectAll('stop')
+                        .data(scale.color.ticks())
+                        .enter()
+                        .append('stop')
+                        .attr('offset', d => scale.percent(d) + '%')
+                        .attr('stop-color', d => scale.color(d));
+
+                      // draw the color rectangle with the gradient
+                      colorbox.attr('fill', 'url(#gradient)');
+
+                      // now we need to draw tick marks for our scale
+                      // we can create a legend that will map our data domain to the legend colorbox
+                      scale.legend = d3.scaleLinear()
+                        .domain(colorDomain)
+                        .range([0, legendWidth]);
+
+                      // i tend to keep scales global so i can debug them in the console
+                      // in this case there really is no need for the percent and legend scales
+                      // to be accessible outside of this function
+
+                      const legendAxis = d3.axisBottom(scale.legend)
+                        .tickValues(scale.color.domain())
+                        .tickSize(legendHeight)
+                        .tickSizeOuter(0);
+
+                      const axisGroup = group.append('g')
+                        .attr('id', 'color-axis')
+                        .attr('transform', translate(0, 12 + 6))
+                        .call(legendAxis);
+
+                      // now lets tighten up the tick labels a bit so they don't stick out
+                      axisGroup.selectAll('text')
+                        .each(function(d, i) {
+                          // set the first tick mark to anchor at the start
+                          if (i == 0) {
+                            d3.select(this).attr('text-anchor', 'start');
+                          }
+                          // set the last tick mark to anchor at the end
+                          else if (i == legendAxis.tickValues().length - 1) {
+                            d3.select(this).attr('text-anchor', 'end');
+                          }
+                        });
+
+                      // note how many more lines of code it took to generate the legend
+                      // than the base visualization!
+                    }
+
+
+                    // only want to show short year in labels
+                    // https://stackoverflow.com/questions/17306830/how-to-get-2-digit-year-w-javascript
+                    function dateFormatter(d) {
+                      // if (d.getMonth() < 3) {
+                      //   return "'" + d.getFullYear().toString().substr(-2);
+                      // }
+                      return d;
+                    }
+
+                    // convert region to more condensed form
+                    function regionFormatter(d) {
+                      let text = d;
+                      // console.log(text[0]);
+                      let parts = text.split(/[" "]+/);
+
+                      //console.log(text.length);
+                      if(text.length > 21){
+                        let parts = text.split(/["/"]+/);
+                        return parts[0].concat("...");
+                      }
+
+                      // if (parts !== null) {
+                      //   text = parts[0];
+
+                      //   if (parts.length > 2) {
+                      //     text = text + "+";
+                      //   }
+                      // }
+
+                      return text;
+                    }
+
+                    // helper method to make translating easier
+                    function translate(x, y) {
+                      return 'translate(' + x + ',' + y + ')';
+                    }
+
+                    function midpoint(range) {
+                      return range[0] + (range[1] - range[0]) / 2.0;
+                    }
+
+                    </script>
+                  </div>
+                </div>
+              </section>
+
+        </section>
+
+
+  <div id="footer">
+  </div>
+  <script>
+  $(function(){
+    $("#footer").load("footer.html");
+  });
+  </script>
+
+  </body>
 
 </html>

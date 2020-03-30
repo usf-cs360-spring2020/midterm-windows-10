@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+
+<style type="text/css">
+
+.axis line {
+  fill: none;
+  stroke: #000000;
+}
+
+div.tooltip-donut {
+    position: absolute;
+    text-align: center;
+    padding: .1rem;
+    background: #FFFFFF;
+    color: #313639;
+    border: 1px solid #313639;
+    border-radius: 8px;
+    pointer-events: none;
+    font-size: 0.6rem;
+}
+
+svg {
+  background-color: white;
+  border: 1px solid white;
+}
+
+.icon:before {
+    font-family: "Font Awesome 5 Free";
+}
+
+</style>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Midterm Beta Release</title>
+    <title>Bar Graph</title>
 
     <!-- Load Bulma from CDN (consider saving it to repository instead) -->
     <!-- https://bulma.io/ -->
@@ -14,125 +45,388 @@
 
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
+    <script src="https://d3js.org/d3.v5.min.js"></script>
 
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script>
-    $(function(){
-      $("#navigation").load("navbar.html");
-      $("#footer").load("footer.html");
-    });
-    </script>
-  </head>
+
+</head>
 
   <body>
 
-  <div id="navigation"></div>
-
-  <section class="section">
-    <div class="container">
-      <!-- Begin page content -->
-      <div class="content">
-        <h1 class="title" align="center">
-          Stack Bar
-        </h1>
-        <p class="subtitle" align="center">
-        Prototype</p>
-
-        <figure >
-          <img  src="Dashboard 3.png"></img>
-        </figure>
-
-        <h2 align="center">Analysis</h2>
-
-        <p>
-        For this stacked bar graph, I looked at the neighborhoods on the X axis
-        and on the y axis, where I had the number of alarms, which were two basic
-        measures to look at. It is interesting to note that certain areas that have
-        tendencies to have higher crime rates, also have a lot more fire responders,
-        because the firefighters end up going with the paramedics. In order to see
-        what type of the response the fire department had to do, I used the Call Type
-        group and made that as a stacked bar chart and represented it with different
-        colors.  his shows a clear trend, where the number of alarms are mostly raised
-        due to potentially life threatening emergencies and that they are the majority
-        of the alarms in all the cases. It is clear that the South of Market and the
-        Tenderloin have the most response.
-        </p>
-
-        <!-- <p class="buttons">
-          <a class="button is-large is-success" href="https://usf-cs360-spring2020.github.io/homework1-adityanz/line.html">
-            <span class="icon is-medium">
-              <i class="fas fa-chart-line"></i>
-            </span>
-            <span>Line Chart</span>
-          </a>
-
-          <a class="button is-large is-info" href="https://usf-cs360-spring2020.github.io/homework1-adityanz/bar.html">
-            <span class="icon is-medium">
-              <i class="fas fa-chart-bar"></i>
-            </span>
-            <span>Bar Chart</span>
-          </a>
-
-        <a class="button is-large is-primary" href="https://usf-cs360-spring2020.github.io/homework1-adityanz/area.html">
-            <span class="icon is-medium">
-              <i class="fas fa-chart-area"></i>
-            </span>
-            <span>Area Chart</span>
-          </a> -->
-
-          <!-- <a class="button is-large is-link" href="#">
-            <span class="icon is-medium">
-              <i class="fas fa-chart-pie"></i>
-            </span>
-            <span>Pie Chart</span>
-          </a>
-        </p> -->
-
-        <!-- https://github.com/vega/vega-embed#basic-example -->
-        <!-- <p>It is possible to embed some visualizations directly here too. Here is <a href="https://github.com/vega/vega-embed#basic-example">an example</a> using Vega-Lite:</p>
-
-        <script src="https://cdn.jsdelivr.net/npm/vega@5.9.0"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.2"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.1"></script>
-
-        <div id="vis"></div>
-
-        <script type="text/javascript">
-        var spec = "https://raw.githubusercontent.com/vega/vega/master/docs/examples/bar-chart.vg.json";
-        vegaEmbed('#vis', spec).then(function(result) {
-          // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-        }).catch(console.error);
-        </script> -->
-
-        <!-- <h4>Instructions</h4>
-
-        <p>You will likely need to include instructions on how to interpet and use the visualization. In the case above, if you click the three dots <i class="fas fa-ellipsis-h has-text-grey-light	"></i> above it will open a menu where you can either save the visualization to a SVG or PNG, or alternatively open it up in the online Vega Editor.</p> -->
-
-        <!-- <h4>Stack Bar</h4> -->
-
-        <!-- <span class="heading">Acknowledgements</span> -->
-
-        <!-- <p2>
-          <a href="https://bl.ocks.org/gordlea/27370d1eea8464b04538e6d8ced39e89">Line Chart: By Gord Lea</a><br/>
-          <a href="https://bl.ocks.org/Golodhros/6f8e6d1792416ee3770ff4ddd5c9594e">Simple Bar Chart: By Marcos Iglesia</a><br/>
-          <a href="https://www.d3-graph-gallery.com/graph/custom_legend.html">Legend and Axis Idea</a><br/>
-          <a href="http://bl.ocks.org/sjengle/47c5c20a18ec29f4e2b82905bdb7fe95/f609fe941f8297daf281b708d845eaeb3933fc16">Template: By Sophie Engle</a><br/>
-          <a href="https://bl.ocks.org/d3noob/4db972df5d7efc7d611255d1cc6f3c4f">Inspiration for Two Lines Chart</a><br/><br/>
-        </p2> -->
-
-        <!-- <p class="is-6">
-          <em>I used all those sources in order to better understand and implement my visualizations in D3 and organize my data.</em>
-        </p> -->
+  <div id="navigation">
+  </div>
+  <script>
+  $(function(){
+    $("#navigation").load("navbar.html");
+  });
+  </script>
 
 
-      </div>
-      <!-- End page content -->
-    </div>
-  </section>
+      <section class="section">
+        <div class="container has-text-centered">
+          <div class="content has-text-centered">
+            <h1>Stacked Bar</h1>
+            <p class="subtitle" align="center">
+            by Aditya Dixit</p>
+            <h3>This is the original tableu prototype</h3>
+
+          <figure class="image is-1050x480">
+              <img src="Dashboard 3.png">
+            </figure>
+            </div>
+            <h2> Group Feedback Sessions</h2>
+
+              <table class="table is-hoverable is-striped">
+              <thead>
+                  <tr>
+                    <th>Feedback</th>
+                    <th>Changes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td> the caption might be better outside the chart| I didn't like the position of caption. Also there was no interactivity section although he talked about his planned interactivity.</td>
+                    <td> Changed the location of the caption to the bottom and added the interactivity section</td>
+                  </tr>
+
+                  <tr>
+                    <td>Color blind prone</td>
+                    <td>Changed the colors to make them more relaateable and moderate.</td>
+                  </tr>
+
+                  <tr>
+                    <td>Neighborhoods, therefore slight LF.</td>
+                    <td>Treid to make it more readable at the bottom</td>
+                  </tr>
+
+                  <tr>
+                    <td>Looks good but there is a lot of text on the right side, also rotating it so the text isnt sideways could help.</td>
+                    <td>Changed the orientation of the graph to vertical to horizontal</td>
+                  </tr>
+
+                  <tr>
+                    <td>Seems good! Good use of the stacked bar visualization type. What more components or interaction could you add to enable discovery and exploring?</td>
+                    <td>Will add more interactivity and added a special calculation</td>
+                  </tr>
+
+                  <tr>
+                    <td>You may want to add some further interactivity or a supplementary chart to add complexity to this and strengthen the relation to the overall theme. There may some lie factor issues depending on the population of each neighborhood, which would impact the number of alarms, so you may want to do ratios rather than just number of alarms.</td>
+                    <td>I could find the ratios however, the visualization is a good enough ratio rather than the calculations</td>
+                  </tr>
+
+                  <tr>
+                    <td>I appreciate your ambition to include the range, but you will almost certainly need to cut down the amount of data you are looking at. The entire data set is too large to perform on-demand filtering on the client-side. Other than that, I really like it.</td>
+                    <td>I cut down the amount of data to only focus on ten years</td>
+                  </tr>
+
+                </tbody>
+              </table>
+              <div class="content has-text-centered">
+
+                <p> In terms of the peer feedback that I received, it was clear, that firstly I had a lot of data, and secondly, the orientation and the colors of the graph were something that needed to be rectified. As per the professor, the colors were also not relevant, so I ended up changing up the colors to make them more suitable. I also did some wrangling that I only included the neighborhoods with the total number of alarms is greater than 10,000, since there were some places that were small in population and/or had a lot of fewer calls, were excluded. </p>
+
+              <h2>Special Calculation</h2>
+              <p> I also added a special calculation column, where the response time, based on my definition, is the difference calculated from the time the call was received by the dispatcher and at the time they were at the scene. I wanted to see how long the fire department took to reach a certain area based on the call type, to see how they give importance and if also, distance does matter, or also the type of call, especially for fire and life risk calls.  </p>
+
+            <h2>Interactivity</h2>
+            <p> I plan to add some sort of hover over effect so when the cursor tooltip goes over the bar, it shows information regarding the alarms, the neighborhood, the total number of alarms, and then the average response time. I also ended up adding some cool effects as well for the bars when it loads. The tip was very useful since it is able to showcase certain extra information that is not displayed visually. </p>
+
+            <h3>This is the updated tableu prototype</h3>
+            <figure class="image is-1050x480">
+                <img src="newbar.png">
+              </figure>
+
+            <h3>This is the D3 Implementation</h3>
+          </div>
+
+            <svg id="bar"></svg>
+            <div class="content has-text-centered">
+
+            <h2>Interpretation</h2>
+            <p> In order to understand that stacked bar chart, one needs to look at the axis. The Y-axis represents the different neighborhoods in SF while the X-axis represents the number of alarms, at 20k intervals. If you hover over the specific bar, the mouse tooltip, one can see the type of call, categorized based on an alarm, fire, non-life threatening life-threatening and also the number of alarms for that call type, and the average response time for that call type in that area. Some of that information gets hidden based on the size of the bars, and the hover info helps to give more detail </p>
+
+            <h2 align="center">Analysis</h2>
+            <p>
+            It is interesting to note that certain areas that have tendencies to have higher crime rates, also have a lot more fire responders,
+            because the firefighters end up going with the paramedics or also, like the Tenderloin, there are a lot of medical emergencies in general. This shows a clear trend, where the number of alarms is mostly raised due to potentially life-threatening emergencies and that they are the majority of the alarms in all the cases, which was interesting for me since I would expect the fires to be the most common call for the fire department. It is clear that the South of Market and the
+            Tenderloin has the most responsive and the top 4 areas have a lot of alarms, however, the other areas have a lot fewer alarms in comparison, since it goes down pretty quickly once they leave those areas, since it is a lot more residential. Now if we look at the response time, it is the lowest for the life-threatening emergency, which makes sense, followed by the fire. However, it is interesting to note that the fire call takes 15s in the financial District to reach, while in the mission, it takes 8s for reaching a fire call.
+            </p>
+
+            <h2 align="center">Conclusion</h2>
+            <p>
+            This midterm assignment helped me better understand how to wrangle a large set of data, work with my team with a common purpose regarding out SF fire dataset looking at the correlations of the type of calls based on neighborhood and it was clear, my visualization was able to do that. I also understood how to make a visualization more interactive, and also add effects. Finally, I was able to enhance my understanding of Javascript and also utilize a complex graph like a stacked bar to present data in a new manner.
+          </p>
+          <h2 align="center">Inspiration</h2>
+                <p>
+                  I had to use many different resources, based on my previous homework code, professor Sophies data-wrangling techniques in order to implement the bar. I have attributed all those sources below.
+                </p>
+                    <span class="heading">Acknowledgements</span>
+
+                    <p2>
+                      <a href="https://bl.ocks.org/Andrew-Reid/0aedd5f3fb8b099e3e10690bd38bd458">Horizontal Stacked Bar: Andrew Reid</a><br/>
+                      <a href="https://bl.ocks.org/mjfoster83/7c9bdfd714ab2f2e39dd5c09057a55a0">Bar Chart with Tooltip: Mike Foster</a><br/>
+                      <a href="https://www.d3-graph-gallery.com/graph/custom_legend.html">Legend and Axis Idea</a><br/>
+                      <a href="https://medium.com/@kj_schmidt/show-data-on-mouse-over-with-d3-js-3bf598ff8fc2">Tooltip Explanation</a><br/><br/>
+                    </p2>
+          </div>
+          </div>
+            </section>
+
+<script>
+
+// location of data files
+let bar = 'bar_data.csv';
 
 
-    <div id="footer"></div>
+let config = {
+  'svg': {},
+  'margin': {},
+  'plot': {}
+};
+
+config.svg.height = 450;
+config.svg.width = config.svg.height * 1.618; // golden ratio
+
+config.margin.top = 10;
+config.margin.right = 10;
+config.margin.bottom = 20;
+config.margin.left = 80;
+
+config.plot.x = config.margin.left;
+config.plot.y = config.margin.top;
+config.plot.width = config.svg.width - config.margin.left - config.margin.right;
+config.plot.height = config.svg.height - config.margin.top - config.margin.bottom;
+
+let margin = {top: 30, right: 20, bottom: 20, left: 70}
+  , width =960
+  , height = 450
+
+  var yScale = d3.scaleBand()
+  .range([margin.top, height - margin.bottom])
+  .padding(0.1)
+.paddingOuter(0.2)
+      .rangeRound([0, height])
+      .align(0.1);
+
+var xScale = d3.scaleLinear()
+      .rangeRound([0, width-200]);
+
+var zScale = d3.scaleOrdinal()
+          .range(["#D73F47", "#ABA09C", "#ED7A22", "#65A9A3"]);
 
 
+
+let svg;
+
+// load data
+d3.csv(bar, convertRow).then(drawMain);
+
+let parseColumnName = d3.timeParse('%Y');
+
+function convertRow(row, index) {
+  // this will be our converted output row
+  let out = {};
+  //out.values = [];
+  out.total;
+  // this will be the values from each yyyy-mm column
+  for (let col in row) {
+    switch (col) {      // these are the text columns that do not need conversion
+      // these are the columns that need to be converted to integers
+      case 'Number of Alarms':
+          //out[col] = parseInt(row[col]);
+          break;
+      // these should be our time series values
+
+      // case 'Call Type Group':
+      //   break;
+
+      case 'Avg. Time On Scene':
+      // var type = row[col];
+      //   out[type] = value;
+      // console.log(out[type])
+      break;
+
+      case 'Neighborhooods - Analysis Boundaries':
+        out[col] = row[col];
+        break;
+
+      default:
+        var type = row[col];
+        var value = parseInt(row["Number of Alarms"])
+        var time  = parseFloat(row["Avg. Time On Scene"]).toFixed(2);
+         out[type] = value;
+         out[type+" time"] = time;
+         out.total = value;
+         break;
+    }
+  }
+  return out;
+}
+
+function drawMain(data) {
+
+var output = []
+
+data.forEach(function(item){
+  var exist = output.filter(function(v,i){
+  return v["Neighborhooods - Analysis Boundaries"] == item["Neighborhooods - Analysis Boundaries"];
+});
+if(exist.length){
+  var index = output.indexOf(exist[0]);
+  var total = output[index].total + item.total;
+  Object.assign(output[index], item);
+  output[index].total = total;
+} else{
+  if(typeof item.value == 'string'){
+    item.value = [item.value];
+  }
+  output.push(item);
+}
+});
+  output.sort(function(a, b) { return b.total - a.total; });
+  var keys = ["Potentially Life-Threatening", "Non Life-threatening", "Fire", "Alarm"]
+  xScale.domain([0,320000])
+
+
+  yScale.domain(output.map(function(d) {  return d["Neighborhooods - Analysis Boundaries"]; }));
+
+  zScale.domain(keys)
+  var div = d3.select("body").append("div")
+   .attr("class", "tooltip-donut")
+   .style("opacity", 0);
+
+  svg = d3.select("body").select("svg#bar")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+svg.append("g")
+     .attr("class", "axis")
+     .attr("transform", "translate(80,0)")
+     .style("stroke","lightslategray")
+     .call(d3.axisLeft(yScale).ticks(null, "s"));
+svg.append("g")
+  .attr("class", "axis")
+  .attr("transform", "translate(80,420)")
+  .style("stroke","lightslategray")
+  .call(d3.axisBottom(xScale).ticks(16,"f").tickFormat(d3.formatPrefix(".0",1e5)));
+
+
+svg.selectAll(".bar")
+.data(d3.stack().keys(keys)(output))
+.enter().append("g")
+  .attr("fill", function(d) {return zScale(d.key) })
+.selectAll("rect").data(function (d){ return d; })
+.enter().append("rect")
+.attr("transform", "translate(80,0)")
+.attr("y", function(d) { return yScale(d.data["Neighborhooods - Analysis Boundaries"]) })
+.attr("x", function(d) { return xScale(d[0]) })
+.attr("width", function(d) {
+  return xScale(d[1]) - xScale(d[0]); })
+
+.on("mouseover", function(d) {
+        d3.select(this).transition()
+               .duration('50')
+               .attr('opacity', .50);
+
+        div.transition()
+               .duration(50)
+               .style("opacity", 1)
+
+      let format = d3.format(",")
+      let key = Object.keys(d.data).find(key => d.data[key] === d[1]-d[0]);
+      let alarmcount = d[1]-d[0];
+      let time = 0;
+      for (var i = 0; i< data.length;i++)
+      {
+        if (data[i][key] == alarmcount)
+        {
+          time = data[i][key+" time"];
+        }
+      }
+
+      // console.log(key)
+      // console.log(d[1]-d[0])
+      // console.log(Object.values(data))
+      div.html(" Alarm Type: " + key + "<br>" + "Neighborhoood: "+d.data["Neighborhooods - Analysis Boundaries"] + "<br>" +"Total Number of Alarms: "+ format(d[1]-d[0])  + "<br>" +"Average Response Time: "+time)
+          .style("left", (d3.event.pageX - 30) + "px")
+          .style("top", (d3.event.pageY - 15) + "px")
+
+		})
+  .on("mouseout", function(d) {d3.select(this).transition()
+               .duration('50')
+               .attr('opacity', 1)
+        div.transition()
+               .duration('50')
+               .style("opacity", 0)
+    }) 
+.transition()
+.duration(2000)//time in ms
+.attr("height", function(d){
+    return yScale.bandwidth()
+})
+
+svg.select("#legend")
+svg.append("circle").attr("cx",870).attr("cy",30).attr("r", 6).style("fill", "#65A9A3")
+svg.append("circle").attr("cx",870).attr("cy",50).attr("r", 6).style("fill", "#ED7A22")
+svg.append("circle").attr("cx",870).attr("cy",70).attr("r", 6).style("fill", "#ABA09C")
+svg.append("circle").attr("cx",870).attr("cy",100).attr("r", 6).style("fill", "#D73F47")
+svg.append("text").attr("x", 863).attr("y", 10).text("Call Type Group").style("font-size", "12px").attr("alignment-baseline","middle")
+svg.append("text").attr("x", 880).attr("y", 30).text("Alarm").style("font-size", "10px").attr("alignment-baseline","middle")
+svg.append("text").attr("x", 880).attr("y", 50).text("Fire").style("font-size", "10px").attr("alignment-baseline","middle")
+svg.append("text").attr("x", 880).attr("y", 70).text("Non").style("font-size", "10px").attr("alignment-baseline","middle")
+svg.append("text").attr("x", 880).attr("y", 80).text("Life Threatening").style("font-size", "10px").attr("alignment-baseline","middle")
+svg.append("text").attr("x", 880).attr("y", 100).text("Potentially").style("font-size", "10px").attr("alignment-baseline","middle");
+svg.append("text").attr("x", 880).attr("y", 110).text("Life Threatening").style("font-size", "10px").attr("alignment-baseline","middle")
+
+svg.append('text')
+    .attr('class', 'axis-title')
+    .attr('x', 37)
+    .attr('y',-5)
+    .attr('text-anchor', 'middle')
+    .style("font-size", "10px")
+    .text('Neighborhoood');
+
+svg.append('text')
+  .attr('class', 'axis-title')
+  .attr('x', 470)
+  .attr('y', 442)
+  .attr('dy', '1.75ex')
+  .attr('text-anchor', 'middle')
+  .style("font-size", "12px")
+  .text('Number of Alarms');
+
+  svg.append('text')
+    .attr('class', 'title')
+    .attr('x', 442)
+    .attr('y',-25)
+    .attr('dy', '1.75ex')
+    .attr('text-anchor', 'middle')
+    .attr("font-weight", 600)
+    .style("font-size", "16")
+    .text('Bar Graph of the Number of Alarms based on the areas in the last 10 years');
+
+}
+
+function translate(x, y) {
+  return 'translate(' + x + ',' + y + ')';
+}
+
+function midpoint(range) {
+    return range[0] + (range[1] - range[0]) / 2.0;
+  }
+
+
+</script>
+
+  <div id="footer">
+  </div>
+  <script>
+  $(function(){
+    $("#footer").load("footer.html");
+  });
+  </script>
+
+  </body>
 
 </html>
