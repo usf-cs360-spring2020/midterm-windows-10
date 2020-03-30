@@ -551,11 +551,15 @@ For inspiration, I would like to thank Sophie’s Zillow HeatMap and her legend 
                         .each(function(d, i) {
                           // set the first tick mark to anchor at the start
                           if (i == 0) {
-                            d3.select(this).attr('text-anchor', 'start');
+                            d3.select(this)
+                              .attr('text-anchor', 'start')
+                              .attr('color', 'black');
                           }
                           // set the last tick mark to anchor at the end
                           else if (i == legendAxis.tickValues().length - 1) {
-                            d3.select(this).attr('text-anchor', 'end');
+                            d3.select(this)
+                              .attr('text-anchor', 'end')
+                              .attr('color', 'black');
                           }
                         });
 
