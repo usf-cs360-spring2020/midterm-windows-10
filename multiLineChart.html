@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Midterm Beta Release</title>
+
+    <!-- Load Bulma from CDN (consider saving it to repository instead) -->
+    <!-- https://bulma.io/ -->
+    <link rel="stylesheet" href="https://jenil.github.io/bulmaswatch/darkly/bulmaswatch.min.css">
+
+    <!-- Load Font Awesome 5 (free) icons -->
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+
+      body {
+      	margin:auto;
+      	width: 885px;
+      	font: 10px arial;
+      	padding: 25px;
+      }
+      .y-axis line {
+      	opacity:.2;
+      }
+      .y-axis path {
+      	display:none;
+      }
+      .line {
+      	fill: none;
+      	stroke-width: 1.5px;
+      	opacity:.75;
+      }
+      path {
+        fill: none;
+        /* stroke: #ed3700; */
+      }
+      path.B01 {
+        /* fill: none; */
+        stroke: green;
+      }
+      path.B02 {
+        fill: stroke;
+        stroke: red;
+      }
+      .overlay {
+      	fill: none;
+      	pointer-events: all;
+      }
+      .lineHoverText {
+      	text-shadow:
+      	-1px -1px 0 black,
+      	1px -1px 0 black,
+      	-1px 1px 0 black,
+      	1px 1px 0 black;
+      }
+      .hoverCircle {
+      	opacity: .75;
+      }
+
+    </style>
+    <script>
+    $(function(){
+      $("#navigation").load("navbar.html");
+      $("#footer").load("footer.html");
+    });
+    </script>
+    <script>
+    // Inspiration for starter code - https://bl.ocks.org/Fil/6d9de24b31cb870fed2e6178a120b17d
+
+    </script>
+  </head>
+
+  <body>
+
+  <div id="navigation"></div>
+
+  <section class="section">
+    <div class="container">
+      <!-- Begin page content -->
+      <div class="content">
+        <h1 class="title" align="center">
+          Multiline Chart
+        </h1>
+        <p class="subtitle" align="center">By Arturo Galvan-Alarcon</p>
+
+        <h2 align="center">Prototype</h2>
+        <figure >
+          <img  src="Dashboard 2.png"></img>
+        </figure>
+
+        <h2 align="center">D3 Implementation</h2>
+
+        <svg id="chart" width="960" height="600"></svg>
+        <script>   /////// TOP
+        // d3.csv('arturoline.csv').then(d => chart(d));
+        d3.csv('arturoline.csv', convertRow).then(d => chart(d)); 
+
+        function convertRow(row, index) {
+          let out = {};
+
+          out.values = [];
+
+          for (let col in row) {
+            switch (col) {
+              // these are the text columns that do not need conversion
+              case 'Battalion':
+                out[col] = row[col];
+                break;
+
+              // // these are the columns that need to be converted to integer
+              case 'Number of Alarms':
+                out[col] = row[col];
+
+                // var response = parseInt(row[col]);
+                //
+                // var value = parseInt(row['Number of Alarms']);
+                //
+                // out.values.push({
+                //   'Response': response,
+                //   'Alarms': value
+                // });
+                break;
+
+              case 'Hour of Response DtTm':
+                out[col] = row[col];
+
+                var response = parseInt(row[col]);
+
+                var value = parseInt(row['Number of Alarms']);
+
+                out.values.push({
+                  'Response': response,
+                  'Alarms': value
+                });
+
+
+              default:
+                // out[col] = row[col];
+
+
+                // var response = parseInt(row[col]);
+                //
+                // var value = parseInt(row['Number of Alarms']);
+                //
+                // out.values.push({
+                //   'Response': response,
+                //   'Alarms': value
+                // });
+                break;
+            }
+          }
+          return out; 
+        }
+
+        function chart(data) {
+
+          // console.log("DATA CHART");
+          // console.log(data);
+
+
+
+
+          var keys = data.columns.slice(0),
+              bisectDate = d3.bisector(d => {console.log("HOUR OF Response"); console.log(d.Hour_of_Response_DtTm); return d.Hour_of_Response_DtTm}).left;
+
+          var output = [];
+          data.forEach(function(item) {
+              //console.log(item);
+
+              var existing = output.filter(function(v, i) {
+                return v.Battalion == item.Battalion;
+              });
+              if (existing.length) {
+                var existingIndex = output.indexOf(existing[0]);
+                // console.log(output[existingIndex]);
+                output[existingIndex].values = output[existingIndex].values.concat(item.values);
+              } else {
+                if (typeof item.value == 'string')
+                  item.value = [item.value];
+                  output.push(item);
+              }
+          });
+          // data = output;
+
+          // console.log("DATA CHART");
+          // console.log(data);
+          // console.log("OUTPUT CHART");
+          // console.log(output);
+
+          // console.log(keys);
+
+          data.forEach(function(d) {
+            d.Battalion = d["Battalion"]
+        		d.Hour_of_Response_DtTm = +d["Hour of Response DtTm"]
+            d.Number_of_Alarms = +d["Number of Alarms"]
+
+        		// return d;
+        	})
+
+          // console.log(data);
+
+          var svg = d3.select("#chart"),
+        		margin = {top: 15, right: 35, bottom: 15, left: 35},
+        		width = +svg.attr("width") - margin.left - margin.right,
+        		height = +svg.attr("height") - margin.top - margin.bottom;
+
+
+          var x = d3.scaleLinear()
+        		.rangeRound([margin.left, width - margin.right])
+        		.domain(d3.extent(data, function(d) {/*console.log(d);*/ return d.Hour_of_Response_DtTm;}));
+
+        	var y = d3.scaleLinear()
+        		.rangeRound([height - margin.bottom, margin.top]);
+            // .domain(d3.extent(data, d => d.Number_of_Alarms));
+
+        	var z = d3.scaleOrdinal(d3.schemeCategory10);
+
+        	var line = d3.line()
+            .curve(d3.curveMonotoneX)
+        		.x(d => {/*console.log(d);*/ return x(d.Response);})
+        		.y(d => y(d.Alarms));
+            // .curve(d3.curveMonotoneX);
+
+          svg.append("g")
+        		.attr("class","x-axis")
+        		.attr("transform", "translate(0," + (height - margin.bottom) + ")")
+        		.call(d3.axisBottom(x).ticks(24, "s"));
+
+        	svg.append("g")
+        		.attr("class", "y-axis")
+        		.attr("transform", "translate(" + margin.left + ",0)")
+            // .call(d3.axisLeft(y).tickSize(-width + margin.right + margin.left))
+            // .call(d3.axisLeft(y));
+
+        	var focus = svg.append("g")
+        		.attr("class", "focus")
+        		.style("display", "none");
+
+          focus.append("line").attr("class", "lineHover")
+        		.style("stroke", "#999")
+        		.attr("stroke-width", 1)
+        		.style("shape-rendering", "crispEdges")
+        		.style("opacity", 0.5)
+        		.attr("y1", -height)
+        		.attr("y2",0);
+
+        	focus.append("text").attr("class", "lineHoverDate")
+        		.attr("text-anchor", "middle")
+        		.attr("font-size", 12);
+
+        	var overlay = svg.append("rect")
+        		.attr("class", "overlay")
+        		.attr("x", margin.left)
+        		.attr("width", width - margin.right - margin.left)
+        		.attr("height", height)
+
+          update(data);
+
+        	function update(data) { // -------------------------------------------
+            // console.log(keys);
+        		// var copy = keys.filter(f => f.includes("Battalion"));
+            var copy = data.map( d => d.Battalion).filter((v, i, a) => a.indexOf(v) === i);//.splice(0,1);
+
+            // console.log("COPY");
+            // console.log(copy);
+            // console.log("DATA");
+            // console.log(data);
+            // console.log("OUTPUT");
+            // console.log(output);
+
+        		var cities = copy.map(function(id) {
+              // console.log(id);
+
+        			return {
+        				id: id,
+        				values: data[data.map(function(d) { return d.Battalion; }).indexOf(id)].values//data.map(d => //{return {Hour_of_Response_DtTm: d.values.Response, Number_of_Alarms: d.values.Alarms}})
+        			};
+        		});
+            // console.log("CITIES");
+            // console.log(cities);
+
+            // console.log(d3.min(cities, d => d3.min(d.values, c => c.Alarms)));
+        		y.domain([
+        			d3.min(cities, d => d3.min(d.values, c => c.Alarms)),
+        			d3.max(cities, d => d3.max(d.values, c => c.Alarms))
+        		]).nice();
+
+            // console.log(y);
+
+        		svg.selectAll(".y-axis")
+              .transition().duration(0)
+        			.call(d3.axisLeft(y).ticks(null, "s"));//tickSize(-width + margin.right + margin.left))
+
+
+            // const lines = svg.selectAll("lines")
+            //   .data(cities)
+            //   .enter()
+            //   .append("g");
+            //
+            // lines.append("path")
+            //   .attr("d", function(d) { return line(d.values); });
+
+        		var city = svg.selectAll(".cities")
+        			.data(cities);
+
+            // console.log(city);
+
+        		city.exit().remove(); // ?????
+
+            // console.log(city);
+
+            // console.log(cities);
+
+        		city.enter().insert("g", ".focus").append("path")
+        			.attr("class", d => {/*console.log(d.id);*/ return d.id})
+              .merge(city)
+        			.style("stroke", d => z(d.id))
+              // .style("stroke", d => {console.log(z(d.id)); return z(d.id)})
+              .transition().duration(0)
+              .attr("d", d => line(d.values))
+
+
+            // tooltip(copy);
+        		tooltip(copy,cities);
+        	}
+
+          function tooltip(copy, cities) {
+
+        		var labels = focus.selectAll(".lineHoverText")
+        			.data(copy)
+
+        		labels.enter().append("text")
+        			.attr("class", "lineHoverText")
+        			.style("fill",function(d){  return z(d); })
+              // .style("text-shadow", function(d){  return z(d); })
+        			.attr("text-anchor", "start")
+        			.attr("font-size",21)
+              // .attr("cy", e => { return y(getBattalion(e).values[xResponseTime].Alarms)})
+        			.attr("dy", (_, i) => {
+                // console.log(cities[i].values);
+                return 1 + i * 2 + "em"})
+        			.merge(labels);
+
+        		var circles = focus.selectAll(".hoverCircle")
+        			.data(copy)
+
+        		circles.enter().append("circle")
+        			.attr("class", "hoverCircle")
+        			.style("fill", d => z(d))
+        			.attr("r", 5)
+        			.merge(circles);
+
+        		svg.selectAll(".overlay")
+        			.on("mouseover", function() { focus.style("display", null); })
+        			.on("mouseout", function() { focus.style("display", "none"); })
+        			.on("mousemove", mousemove);
+
+
+
+        		function mousemove() {
+
+              // console.log("DATA MOUSEOVER");
+              // console.log(data);
+
+        			var x0 = x.invert(d3.mouse(this)[0]),
+        				i = bisectDate(data, x0, 1),
+        				d0 = data[i - 1],
+        				d1 = data[i],
+        				d = x0 - d0.Hour_of_Response_DtTm > d1.Hour_of_Response_DtTm - x0 ? d1 : d0,
+                xResponseTime = d.Hour_of_Response_DtTm;
+
+              // console.log("d1")
+              // console.log("data[i]");
+              // console.log(data[i].values);
+              // console.log(data[i].values[0]);
+              // console.log(data[i].values[0].Response);
+              // console.log("xResponseTime");
+              // console.log(xResponseTime);
+
+        			focus.select(".lineHover")
+        				.attr("transform", "translate(" + x(xResponseTime) + "," + height + ")");
+
+        			// focus.select(".lineHoverDate")
+              //   .style("fill","white")
+        			// 	.attr("transform",
+        			// 		"translate(" + x(d.Hour_of_Response_DtTm) + "," + (height + margin.bottom) + ")")
+        			// 	.text(d.Hour_of_Response_DtTm);
+
+              function getBattalion(e){
+                var bat;
+                cities.forEach(b => {
+                  if(b.id === e){
+                    // console.log(b);
+                    bat = b;
+                    // return b;
+                  }
+                });
+                // console.log(bat);
+                return bat;
+              }
+
+        			focus.selectAll(".hoverCircle")
+        				// .attr("cy", e => {console.log(getBattalion(e).values[xResponseTime].Alarms); console.log(e); return y(getBattalion(e).values[xResponseTime].Alarms)})
+                .attr("cy", e => { return y(getBattalion(e).values[xResponseTime].Alarms)})
+        				.attr("cx", x(xResponseTime));
+
+        			focus.selectAll(".lineHoverText")
+        				.attr("transform", e => {
+                  // console.log(getBattalion(e).values[xResponseTime].Alarms);
+                  var h = getBattalion(e).values[xResponseTime].Alarms;
+                  return "translate(" + (x(xResponseTime)) + "," + ((height - 300) / 2.5) + ")"; //((height-200)  / 2.5)
+                })
+        				.text(e => e + " " + getBattalion(e).values[xResponseTime].Alarms);
+
+        			x(xResponseTime) > (width - width / 4)
+        				? focus.selectAll("text.lineHoverText")
+        					.attr("text-anchor", "end")
+        					.attr("dx", -10)
+        				: focus.selectAll("text.lineHoverText")
+        					.attr("text-anchor", "start")
+        					.attr("dx", 10)
+        		}
+        	}
+
+          };
+        </script>
+
+        <h2 align="center">Analysis</h2>
+
+        <p align="center">
+        For this Multiline Chart, the sum of alarms with the relation
+        to the Response Hour can be visually explored.
+
+        The color scheme for each line is based on the Battalion and the hover text
+        shows the battalion ID and the number of alarms based on the hour.
+
+        The visualization of alarms to response hour can be observed to find what hours had the
+        most alarm count and contrast them between each battalion. Essensially,
+        this visualization can display the correlation to the highest alarm count with respect to the response hour.
+
+        <br><br>
+
+        From the feedback given, my visualization I had before was a good start
+        however it lacked any meaning behind what was shown and instead just
+        represented a cluster of colored bubbles. Using the feedback given and Prof. Sophie’s advice,
+        I redesigned my visualization. I transitioned switched onto a new visualization,
+        one based on a multiline chart.
+
+        With the data collected, I was able to extrapulate the quantity of alarms
+        flagged based on the hour of the day, ranging from 0 to 23 (24-hour representation).
+        To deepen my chart's representation of information, I seperated each Battalion
+        and to show the sum of Alarms they each had.
+
+        The tooltip I used allows a user to hover over a specific time and see the total
+        sum of alarms for each battalion based on the color represented. Battalion 02 and 03
+        had the the most activity for alarms out of all the other battalions, this can be
+        correlated with either a district area or areas with higher population causing these higher alarm counts to happen.
+
+        For the findings, I found that between the hours of 20 to 5 (9 hour window), the sum of alarms
+        decreases when compared to the rest of the 24-hour scale.
+        </p>
+
+        <h2 align="center"></h2>
+
+        <h2 align="center">Acreditation for Inspiration</h2>
+        <p align="center">Robert Peaterson's Multiline Chart - <a href="https://bl.ocks.org/LemoNode/a9dc1a454fdc80ff2a738a9990935e9d">visualization link</a></p>
+        <p align="center">Eve the analyst's <a href="http://datawanderings.com/2019/10/28/tutorial-making-a-line-chart-in-d3-js-v-5/">TUTORIAL</a></p>
+        <!-- <p class="buttons">
+          <a class="button is-large is-success" href="https://usf-cs360-spring2020.github.io/homework1-adityanz/line.html">
+            <span class="icon is-medium">
+              <i class="fas fa-chart-line"></i>
+            </span>
+            <span>Line Chart</span>
+          </a>
+
+          <a class="button is-large is-info" href="https://usf-cs360-spring2020.github.io/homework1-adityanz/bar.html">
+            <span class="icon is-medium">
+              <i class="fas fa-chart-bar"></i>
+            </span>
+            <span>Bar Chart</span>
+          </a>
+
+        <a class="button is-large is-primary" href="https://usf-cs360-spring2020.github.io/homework1-adityanz/area.html">
+            <span class="icon is-medium">
+              <i class="fas fa-chart-area"></i>
+            </span>
+            <span>Area Chart</span>
+          </a> -->
+
+          <!-- <a class="button is-large is-link" href="#">
+            <span class="icon is-medium">
+              <i class="fas fa-chart-pie"></i>
+            </span>
+            <span>Pie Chart</span>
+          </a>
+        </p> -->
+
+        <!-- https://github.com/vega/vega-embed#basic-example -->
+        <!-- <p>It is possible to embed some visualizations directly here too. Here is <a href="https://github.com/vega/vega-embed#basic-example">an example</a> using Vega-Lite:</p>
+
+        <script src="https://cdn.jsdelivr.net/npm/vega@5.9.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.2"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.1"></script>
+
+        <div id="vis"></div>
+
+        <script type="text/javascript">
+        var spec = "https://raw.githubusercontent.com/vega/vega/master/docs/examples/bar-chart.vg.json";
+        vegaEmbed('#vis', spec).then(function(result) {
+          // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+        </script> -->
+
+        <!-- <h4>Instructions</h4>
+
+        <p>You will likely need to include instructions on how to interpet and use the visualization. In the case above, if you click the three dots <i class="fas fa-ellipsis-h has-text-grey-light	"></i> above it will open a menu where you can either save the visualization to a SVG or PNG, or alternatively open it up in the online Vega Editor.</p> -->
+
+        <!-- <h4>Stack Bar</h4> -->
+
+        <!-- <span class="heading">Acknowledgements</span> -->
+
+        <!-- <p2>
+          <a href="https://bl.ocks.org/gordlea/27370d1eea8464b04538e6d8ced39e89">Line Chart: By Gord Lea</a><br/>
+          <a href="https://bl.ocks.org/Golodhros/6f8e6d1792416ee3770ff4ddd5c9594e">Simple Bar Chart: By Marcos Iglesia</a><br/>
+          <a href="https://www.d3-graph-gallery.com/graph/custom_legend.html">Legend and Axis Idea</a><br/>
+          <a href="http://bl.ocks.org/sjengle/47c5c20a18ec29f4e2b82905bdb7fe95/f609fe941f8297daf281b708d845eaeb3933fc16">Template: By Sophie Engle</a><br/>
+          <a href="https://bl.ocks.org/d3noob/4db972df5d7efc7d611255d1cc6f3c4f">Inspiration for Two Lines Chart</a><br/><br/>
+        </p2> -->
+
+        <!-- <p class="is-6">
+          <em>I used all those sources in order to better understand and implement my visualizations in D3 and organize my data.</em>
+        </p> -->
+
+
+      </div>
+      <!-- End page content -->
+    </div>
+  </section>
+
+
+    <div id="footer"></div>
+
+
+
+</html>
