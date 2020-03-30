@@ -17,14 +17,14 @@
 
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <style>
+    <style type="text/css">
 
-      body {
+      /* body {
       	margin:auto;
       	width: 885px;
       	font: 10px arial;
       	padding: 25px;
-      }
+      } */
       .y-axis line {
       	opacity:.2;
       }
@@ -38,16 +38,14 @@
       }
       path {
         fill: none;
-        /* stroke: #ed3700; */
       }
-      path.B01 {
-        /* fill: none; */
+      /* path.B01 {
         stroke: green;
       }
       path.B02 {
         fill: stroke;
         stroke: red;
-      }
+      } */
       .overlay {
       	fill: none;
       	pointer-events: all;
@@ -62,6 +60,11 @@
       .hoverCircle {
       	opacity: .75;
       }
+
+      /* svg.arturo {
+        background-color: white;
+        border: 1px solid white;
+      } */
 
     </style>
     <script>
@@ -96,7 +99,7 @@
 
         <h2 align="center">D3 Implementation</h2>
 
-        <svg id="chart" width="960" height="600"></svg>
+        <svg class="arturo" id="chart" width="960" height="600" ></svg>
         <script>   /////// TOP
         // d3.csv('arturoline.csv').then(d => chart(d));
         d3.csv('arturoline.csv', convertRow).then(d => chart(d)); 
