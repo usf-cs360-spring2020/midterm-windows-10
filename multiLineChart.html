@@ -20,7 +20,7 @@
     stroke-width: 1.5px;
     opacity:.75;
   }
-  path {
+  path.batallion{
     fill: none;
   }
   /* path.B01 {
@@ -94,8 +94,10 @@
         </figure>
 
         <h2 align="center">D3 Implementation</h2>
+        <div class="content has-text-centered">
 
         <svg class="arturo" id="chart" width="960" height="600" ></svg>
+      </div>
         <h2 align="center">Analysis</h2>
 
         <p align="center">
@@ -366,18 +368,48 @@
 
       city.exit().remove(); // ?????
 
+
       // console.log(city);
 
       // console.log(cities);
 
       city.enter().insert("g", ".focus").append("path")
-        .attr("class", d => {/*console.log(d.id);*/ return d.id})
+        .attr("class", "batallion")//d => {/*console.log(d.id);*/ return d.id})
         .merge(city)
         .style("stroke", d => z(d.id))
         // .style("stroke", d => {console.log(z(d.id)); return z(d.id)})
         .transition().duration(0)
         .attr("d", d => line(d.values))
 
+        svg.append('text')
+            .attr('class', 'axis-title')
+            .attr('x', -280)
+            .attr('y', 7)
+            .attr('text-anchor', 'middle')
+             .attr('transform', 'rotate(-90)')
+            .style("font-size", "10px")
+            .style("fill","white")
+            .text('Number of Alarms');
+
+        svg.append('text')
+          .attr('class', 'axis-title')
+          .attr('x', 480)
+          .attr('y', 580)
+          .attr('dy', '1.75ex')
+          .attr('text-anchor', 'middle')
+          .style("font-size", "10px")
+          .style("fill","white")
+          .text('Response DtTm');
+
+          svg.append('text')
+            .attr('class', 'title')
+            .attr('x', 442)
+            .attr('y',-25)
+            .attr('dy', '1.75ex')
+            .attr('text-anchor', 'middle')
+            .attr("font-weight", 600)
+            .style("font-size", "16")
+            .text('Bar Graph of the Number of Alarms based on the areas in the last 10 years');
 
       // tooltip(copy);
       tooltip(copy,cities);
